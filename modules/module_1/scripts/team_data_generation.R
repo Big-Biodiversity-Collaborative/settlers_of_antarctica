@@ -31,6 +31,6 @@ specialties = sample(specialty, size = 1000, replace = TRUE)
 # weight
 weights = sample(seq(from = 90.0, to = 250, by = 0.5), size = 1000, replace = TRUE)
 
+mission_app = data.frame(last, first, gender = gender_labels, age, weight = weights, specialties)
 
-
-mission_app = data.frame(
+write_csv(mission_app, "./modules/module_1/data/mission_team_data.csv")
