@@ -36,8 +36,11 @@ for(i in 1:length(files)) {
                                   "wind_speed", "wind_direction", 
                                   "humidity", "delta_t"))
   temp = temp %>%
-    mutate(date = paste(test$year, test$month, test$day, sep = "-") %>% ymd()) %>%
-    mutate_if(is.character, as.numeric)
-  master_station_data = bind_cols(master_station_data, temp)
+    mutate(date = paste(year, month, day, sep = "-") %>% ymd()) %>%
+    mutate_if(is.character, as.numeric) %>%
+    mutate(station_id = str_remove(str_sub(files[i], start = -16), 
+                                   pattern = ".txt"))
+  master_station_data = bind_rows(master_station_data, temp)
 }
-}
+
+write_csv(master_station_data, "./modules/module_1/data/aggregated_station_data.csv")
