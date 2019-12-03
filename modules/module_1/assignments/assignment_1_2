@@ -1,0 +1,13 @@
+Assignment 1-2 - Getting to Know The Team
+
+The goal of this assignment is to get more comfortable dealing with large 2-dimensional data sets you'll see in the wild. 
+
+At https://tinyurl.com/wg6t2je is .csv file that you'll work with for the assignment. You can download it to your computer using the download.file() function in R, or download it directly from the link. Send me a script that is due by the start of class on January 30th that: 
+
+1. Is properly formatted using best coding practices we've discussed in class. 
+2. Loads the tidyverse package into the workspace. 
+3. Imports the data described above. 
+4. Uses the glimpse() and head() function to examine the data for quality control pre-processing, and outlines one potential error in the data based on this check. 
+5. Bind your information (make up a weight if you feel uncomfortable putting it in!) to the data.frame
+6. Determine if 1) there are more men or women on Team Antarctica, 2) what the average age of men and women are, and 3) what the most common speciality is. 
+
