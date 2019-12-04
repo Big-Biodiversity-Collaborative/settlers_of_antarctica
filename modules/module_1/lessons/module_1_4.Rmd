@@ -1,0 +1,21 @@
+---
+title: "Settlers of Antarctica - Module 1 - Day 4"
+author: "Keaton Wilson"
+date: "12/4/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Day 4 - 2-dimensional data and introduction to the tidyverse  
+
+## Learning Objectives  
+1. Students will practice programming fundamentals like installing and loading packages, using helpfiles and navigating file structure.  
+2. Studenst will be able to use the fundamental functions of the tidyverse: select, filter, mutate, summarize and the pipe.  
+3. Students will be able to compare base R methodology and tidyverse methodology for filtering and indexing dataframes.  
+4. Students will able to use functions above to gain insight from real-world data.  
+
+# Tidyverse - what is it?  
+Differenet programming languages have different syntax... and tidyverse is a package (or set of packages) offered in R that have similar goals and a set of unified syntax designed specifically to work with 2-dimensional data. When I started learning R, none of this was available, but the ecosystem has changed a lot in the last 10 years, and this is the set of tools I use to work with data every day.   
