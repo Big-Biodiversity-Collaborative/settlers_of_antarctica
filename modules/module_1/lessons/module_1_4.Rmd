@@ -17,5 +17,54 @@ knitr::opts_chunk$set(echo = TRUE)
 3. Students will be able to compare base R methodology and tidyverse methodology for filtering and indexing dataframes.  
 4. Students will able to use functions above to gain insight from real-world data.  
 
-# Tidyverse - what is it?  
+## Tidyverse - what is it?  
 Differenet programming languages have different syntax... and tidyverse is a package (or set of packages) offered in R that have similar goals and a set of unified syntax designed specifically to work with 2-dimensional data. When I started learning R, none of this was available, but the ecosystem has changed a lot in the last 10 years, and this is the set of tools I use to work with data every day.   
+
+## Getting the tidyverse (and what's in it) - Group Challenge and discussion
+
+Let's begin by scoping out what is in the tidyverse. Go to www.tidyverse.org and browse the site. In your groups, answer the 3 questions below, and be prepared to report out at the end:   
+1. What are the core packages in the tidyverse?  
+2. Give a one sentence summary about what each package does.  
+3. What is one question you have about the tidyverse/core packages?  
+
+## Practice with the tidyverse  
+
+We're going to use a real data set on climate change from Berkeley. It outlines temperatures in major cities across the world since 1750. We're going to use this data set to learn the tidyverse!  
+
+First things first, let's load it up. 
+
+```{r}
+library(tidyverse)
+
+# download.file("https://tinyurl.com/vvsykhm")
+
+climate_df = read_csv("../data/GlobalLandTemperaturesByMajorCity.csv")
+
+# call the climate data... this looks a bit different
+climate_df
+
+# It's a tibble! Like a dataframe but better. :) Lots of information to dissect here. Let's look at another way to quickly view our data.  
+
+glimpse(climate_df)
+
+
+# 
+```
+
+Let's use our first function, select. 
+```{r}
+# Select at its core allows you pick out a selection of columns from your data
+# Can folks remember how do this with base R?
+
+climate_df$dt
+climate_df[,1:2]
+
+#Select does this, but with more power. 
+select(climate_df, dt)
+
+# Multiple columns
+select(climate_df, dt, City, Country)
+select(climate_df, dt:Country, -City)
+
+# 
+```
