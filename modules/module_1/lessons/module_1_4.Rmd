@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Learning Objectives  
 1. Students will practice programming fundamentals like installing and loading packages, using helpfiles and navigating file structure.  
-2. Studenst will be able to use the fundamental functions of the tidyverse: select, filter, mutate, summarize and the pipe.  
+2. Students will be able to use the fundamental functions of the tidyverse: select, filter, mutate, summarize and the pipe.  
 3. Students will be able to compare base R methodology and tidyverse methodology for filtering and indexing dataframes.  
 4. Students will able to use functions above to gain insight from real-world data.  
 
@@ -50,8 +50,10 @@ glimpse(climate_df)
 
 # 
 ```
+## Select()ing columns  
 
-Let's use our first function, select. 
+Let's use our first function, select.  
+
 ```{r}
 # Select at its core allows you pick out a selection of columns from your data
 # Can folks remember how do this with base R?
@@ -66,5 +68,47 @@ select(climate_df, dt)
 select(climate_df, dt, City, Country)
 select(climate_df, dt:Country, -City)
 
-# 
+# Similar process for rows - though we typically don't have rownames in R
+slice(climate_df, 1:4)
+```
+
+## Filtering a Dataframe with filter()  
+
+`filter()` allows you filter rows by certain conditions. Recall that we did this a bit with base R.  
+
+```{r}
+
+# base R
+climate_df[climate_df$Country == "United States",]
+
+# filter
+filter(climate_df, Country == "United States")
+
+# Pretty similar, but easy to chain stuff together
+filter(climate_df, Country == "United States" & AverageTemperature > 25)
+
+# Also worth noting here that we haven't saved any of this. We need to write to a new object. 
+
+us_df = filter(climate_df, Country == "United States")
+
+```
+
+## Group Challenge  
+Work with the climate data we've using this class period. Construct a small set of code that does the following:  
+1. Slims down the full dataframe to one that contains the columns dt, AverageTemperature and City.  
+2. Filters the data for Paris and Mexico City (hint:this may be hard than you think...remember to do quality control on your data) with an average temperature less than 22.  
+3. Name this new dataframe "cold_paris_and_mexico_city"
+
+```{r}
+# Piped
+cold_paris_and_mexico_city = climate_df %>%
+  select(dt, AverageTemperature, City) %>%
+  filter(City == "Paris" | City == "Mexico", 
+         AverageTemperature < 22)
+
+# Not piped
+slim = select(climate_df, dt, AverageTemperature, City)
+filtered = filter(slim, City == "Paris" | City == "Mexico", 
+                  AverageTemperature < 22)
+cold_paris_and_mexico_city = filtered
 ```
