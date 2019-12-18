@@ -1,0 +1,111 @@
+---
+title: "Module 1 Mission to Antarctica - Exam 1"
+author: "Keaton Wilson"
+date: "12/13/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Assessment Objectives  
+1. Asesss that students understand the different components of RStudio IDE, and are familiar with key concepts that will lead to success later in the course including: using helpfiles, loading packages, and functional differences between the console and scripts.  
+2. Assess that students understand basic programming concepts like assignments, functions, vectors and different data types.  
+3. Assess student's ability to psuedo-code the structure of exploring and summarizing 2-dimensional data, either through base R or the tidyverse. Perfect syntax isn't important here, but general structure is.  
+4. Assess student's knowledge of the components of experimental design by having them think critically to critique an example of a flawed design methodology. 
+
+
+## Questions  
+1. Imagine you have a script open and are editing it. Repsectively, what are two functions of the bottom right panel and one function of the top right panel.  
+a. Bottom right: Github and Plots, Top right: Console and Scripts
+b. Bottom right: Files and Help, Top right: Environment
+c. Bottom right: Scripts and Help, Top right: Environment
+d. Bottom right: Packages and Viewer, top right: Console
+
+2. What is the correct code for loading up the helpfile for `install_github()` function from the devtools packge that you haven't loaded into your working environment?  
+a. `??install_github`  
+b. `?install_github`  
+c. `?devtools::install_github`  
+d. `help(devtools::install_github)`  
+e. a or d  
+f. a, d, or c  
+
+3. What is the result of the code below?
+```{r, eval=FALSE}
+x <- c(1,5,7,3,22,23)
+y <- c("2", "4", "3", "33", "42", "8")
+z <- x+y
+
+print(z*2)
+```
+
+a. An error  
+b. 456  
+c. 3 9 10 36 64 31  
+d. 6 18 20 72 128 62  
+e. 306  
+
+4. Identify ALL lines of code below that contain problems. There is AT LEAST 1 problem. 
+
+```{r, eval=FALSE}
+
+read_csv(/documents/files/antarctica_data.csv)
+
+glimpse(antarctica_data)
+
+# I want to just view the first column of the antarctica_data data frame
+
+antarctica_data[,1]
+
+# I want to calculate the the mean of the 2nd column and bind it a variable called "mean_temp"
+"mean_temp" == mean(antarctica_data[,2])
+```
+
+a. Lines 1,2, 11 have problems
+b. All lines have problems
+c. Only line 11 has problems
+d. Lines 8 and 2 have problems
+e. Lines 1 and 2 contain problems
+
+5. In the example above, explain the issues present in your answer (if your answer contains multiple issues, explain all of them).  
+
+
+
+6. Describe two problems in the experimental design protocol outlined below and how they could be remedied.
+
+Dev and Natalee (two members of team-Antarctica) are working together to develop an experiment that tests whether or not there is a difference in the readings generated from a new model of temperature sensor that is being tested to replace aging sensors across the continent. They've decided to replace old sensors in monitoring stations in three different areas: areas with extremely cold temperatures, areas with moderate temperatures, and areas with milder temperatures. In total, they will compare 5 of the new sensors (they are expensive!) against 49 older sensors over a 3 month window between January and February. After the three months, they will compile the old and new senor data across different areas and compare to see if there are meaningful differences in the data they've collected.  
+
+7. Describe, in your own words, what each step of the code below is doing. 
+```{r, eval=FALSE}
+
+summary_df = read_csv(team_data) %>%
+  select(name, age, sex, height, specialty) %>%
+  filter(age > 30) %>%
+  group_by(sex) %>%
+  summarize(m_age = mean(age, na.rm = TRUE))
+```
+
+8. Briefly describe what Data Science is and how it might be useful to your future career.   
+
+
+9. What is the function in R to load a  package into your working environment?  
+a. install.packages()  
+b. import package as p  
+c. library()  
+d. read_csv()  
+e. devtools::install_github()  
+
+
+10. What value is printinted in the console from the code below.  
+
+vec_1 = c(1,2,20,24)
+vec_2 = c(1,1,1,4)
+vec_mult = a*b
+print(vec_mult)  
+
+a. 1,2,20,96  
+b. 2,3,21,28  
+c. 329  
+d. (1,1), (2,1), (20,1), (24, 4)  
+e. Error  

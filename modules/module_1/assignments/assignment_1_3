@@ -1,0 +1,15 @@
+Assignment 1-3 - Getting to know your new home
+
+For this final assignment for module 1, you'll be working with another real-world data set, a collection of data from climate stations scattered across antarctica. The file can be downloaded here (https://tinyurl.com/uwf9qzk). 
+
+Your goal for this assignment is to use all of the programming skills you've acquired so far to provide some insight into this complex and large data set. 
+
+The assignment is to write an R script that: 
+1) Is properly formatted with best-coding practices we've discussed.  
+2) Loads in the tidyverse packages to the workspace
+3) Performs a quality control check on the data and notes the number of columns and rows in commented notes
+4) How many unique stations are there reported here? (Hint: look up the help file for the unique() function)
+5) Write a chunk of code that calculates the mean temperature for the month of January for each station. You can use base R or tidyverse, but it will probably be easier in tidyverse. Hint: think about using the pipe, group_by(), filter() and summarize(). 
+6) Which station had the coldest average temperature in January (hint: look up the arrange() function)
+
+Upload the script to D2L when finished. 

@@ -111,4 +111,23 @@ slim = select(climate_df, dt, AverageTemperature, City)
 filtered = filter(slim, City == "Paris" | City == "Mexico", 
                   AverageTemperature < 22)
 cold_paris_and_mexico_city = filtered
+
 ```
+## The pipe  
+You can use the pipe operator to chain tidyverse functions together. This has a twofold benefit - it removes the clutter of creating a lot of intermediate objects in your workspace, but also makes things very human-readable.  
+
+```{r}
+climate_df %>%
+  select(dt, AverageTemperature, City) %>%
+  filter(City == "Paris" | City == "Mexico", 
+         AverageTemperature < 22)
+```
+
+## Learning new verbs - Group Assignment
+You've had an introduction to the tidyverse verbs, but there a few more to learn. We're going to practice extracting information from the web, which is a key tool in the toolkit of data scientists.  
+
+Figure out what the `mutate()` and `summarize()` functions do. Use the web (particularly useful links include the tidyverse website, and a help-forum for stats and programming called stack overflow). Here are the specifics:
+1) Be able to briefly describe each function  
+2) Come up with an example from the climate data frame we've been working on.  
+As always, be ready to present to your peers.  
+
