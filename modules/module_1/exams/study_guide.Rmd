@@ -1,0 +1,53 @@
+---
+title: "Module 1 Study Guide"
+author: "Keaton Wilson"
+date: "12/21/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+This study guide is designed to cover expectations for student knowledge and skills in Module 1, and should be used as a tool prior to Exam 1. It's a series of questions that cover the bulk of the material we went through in this module, and closely mirrors the kinds of questions and topics students should expect on Exam 1.  
+
+It is broken up by topic for easier organization. 
+
+## Data Science in the World  
+During the first class we talked about the field of data science and how it relates to students' experiences and how it might be beneficial to students in this course.  
+
+### Questions  
+1. Give a concise definition of Data Science
+2. List two reasons that data literacy are important to someone whose profession isn't in the sciences. 
+
+## Introduction to RStudio  
+We spent a lot of time in this module becoming familiar with how to use the RStudio IDE. Below are questions that cover some knowledge about the different basic functions that it provide.  
+
+### Questions  
+1. Describe the functions of all of the different panes of RStudio (remember that some panes have multiple functions!).  2. List two useful features of RStudio that aren't related to panes (think about navigating file structure, and pop-ups!)  
+3. Describe one feature of RStudio that you found on your own during this module that we didn't discuss in class.  
+
+## Programming 101 in R  
+We covered a lot of ground in a short amount of time on introductory programming. This includes basic R syntax such as assignments, operators, data classes, commenting and vectors.  
+### Questions  
+1. Explain the difference between what is happening in the two code blocks below.   
+```{r}
+x = 2
+y = 2
+x+y
+```
+```{r}
+x = 2
+y = 2
+z = x+y
+print(z)
+```
+
+2. Name and describe three different data classes in R.  
+3. What is the character used to comment out lines in R?
+4. Concisely give the definition of a vector in R, as you understand it. 
+5. Thinking forward to the work and classes to come, why do you think these particular peices of syntax/knowledge are important?  
+
+## Programming 102 in R  
+We used previously-built skills to delve into more relastic workflows of exploring data. 
