@@ -48,7 +48,8 @@ team_sub_sick %>%
 
 # binding
 team_sub_sick = team_sub_sick %>%
-  mutate(doctor_trips = doctor_trips)
+  mutate(doctor_trips = doctor_trips) %>%
+  filter(doctor_trips > 0)
 
 # export
 write_csv(team_sub_sick, "./modules/module_2/data/sick_data.csv")
