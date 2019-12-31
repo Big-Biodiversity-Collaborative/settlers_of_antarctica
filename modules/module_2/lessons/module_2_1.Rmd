@@ -29,6 +29,71 @@ plants or fish are the culprits? Be ready to report out.
 
 ## Introduction to the dataset and visualization in R  
 
-First we're going to pull in the data and 
+First we're going to pull in the data and give it a quick inspection/exploration
+before we start to work through some of the visualization tools in R.  
 
+```{r}
+library(tidyverse)
 
+sick = read_csv("https://tinyurl.com/unavf2v")
+sick
+glimpse(sick)
+
+# See any problems? Looks like there might be some age data that is messed up 
+# some of the age values are wayyyy too young. Let's exclude all of those. 
+
+sick = sick %>%
+  filter(age > 18)
+
+# Basic visualization - in base R, the plot(), and some others function is your 
+# friend. We'll talk about some tidyverse ways to plot that are a bit more 
+# powerful later, but you really can do any kind of plotting you want with base 
+# R. 
+
+hist(sick$age)
+
+```
+
+## Mini Group Discussion - Histograms  
+What is this showing us? What conclusions can we draw from this data 
+visualization? How could this visualization be improved?   
+
+## Group Project - make a better histogram.  
+Work in your groups to build a histogram of weights with properly labeled axes, 
+a vertical line that depicts the median, and an appropriate visually appealing 
+bin size. Check out the `hist()` help page, and the `abline()` function. 
+
+```{r}
+hist(sick$age, breaks = 15, xlab = "Age", ylab = "Frequency", main = NULL)
+abline(v = median(sick$age))
+
+```
+
+## Brainstorm - Group activity  
+We've covered one type of visualization that just shows one variable... but what
+we're really interested in is figuring out if fish or plants are the culprit in 
+food poisoning. Spend 10 minutes in your groups sketching out a visualization 
+that might give us insight into this.  
+
+## Scatter plots  
+```{r}
+plot(x = sick$age, y = sick$perc_fish)
+```
+
+Not super informative, because there isn't really a relationship between a 
+person's age and the amount of fish they consume. At least not in this sample. 
+
+# Building and interpreting
+In your group, build out the plot that you conceived earlier that determines 
+whether there is a correlation between the percentage of fish eaten and the 
+number of trips to the doctor in the past 6 months. Use proper labelling and 
+aesthetic design principles to make it as visually appealing as possible.  
+
+```{r}
+plot(x = sick$perc_fish, y = doctor_trips, 
+     xlab = "Percentage Fish in Diet", 
+     ylab = "Number of Trips to Doctor", 
+     main = NULL, 
+     pch = 16)
+
+```
