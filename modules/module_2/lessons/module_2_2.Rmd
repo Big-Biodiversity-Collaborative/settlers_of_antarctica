@@ -1,0 +1,49 @@
+---
+title: "Module 2-2 - Functions"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data Exploration  
+So, it does seem like there is something wrong with the fish, given the 
+correlation we found earlier. Let's check out our tank data. 
+
+```{r}
+library(tidyverse)
+
+fish_tank_data = read_csv("https://tinyurl.com/tbyskxl")
+glimpse(fish_tank_data)
+```
+
+## Discussion of the problem  
+
+So here, the scenario, we have this data, and we know what the critical 
+temperature cutoffs are for both species, but the problem is that they're in 
+farenheit... and the values in our data frame are in celsius. The fish 
+biologists we worked with on this were from the UK and US, and for some reason 
+didn't give us information the appropriate format. 
+
+Anything below 59ª F for Trout and anything below 65º F for Tilapia is 
+critically low, and can result in suppression of the immune system. 
+
+So here is the first challenge, how do we use this information given our current 
+data frame. Ultimately, we want a filtered data frame that just shows us tanks 
+that are below these values... trying to figure out how common it is.  
+
+With your groups, brainstorm some approaches you think might work. 
+Don't actually code them out, just diagram, psuedo code or talk through them. 
+As always, be ready to share.  
+
+
+## Custom Functions  
+There are many solutions to this problem, but one that is particularly useful 
+and powerful in R is building your own functions. We've already used functions a
+ton, and you can write your own... to do absolutely anything you want. This has 
+lot of uses... but the big one here is that we can write a simple function that 
+converts celsius to farenheit and apply it to our entire data set, in just a few 
+lines of code.   
+
+```{r}
