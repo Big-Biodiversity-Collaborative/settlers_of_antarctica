@@ -1,0 +1,14 @@
+Assignment 2-2
+
+Submit a script that uses the fish tank data (https://tinyurl.com/tbyskxl). 
+The script should perform the following actions:
+1) Write a function that replicates the same sampling procedure we developed to
+sample the number of sick fish in a given tank, except sample tank temperature. 
+2) The script should follow proper formatting guidelines and best coding 
+practices we've discussed. 
+3) Sample for each species separately (you can include this in your function, 
+or run the function twice on two filtered data sets). 
+4) Report the 5-sample mean temperature for each species. 
+5) Briefly, in a commented sentence at the end of the script, judge whether this
+mean value is below the physiological threshold for immunsuppresion that we 
+discussed (for each species). 
