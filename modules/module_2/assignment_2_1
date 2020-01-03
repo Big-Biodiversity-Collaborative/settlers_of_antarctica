@@ -1,0 +1,12 @@
+Assignment 2-1 
+
+Submit a script that uses the fish tank data (https://tinyurl.com/tbyskxl). The
+script should perform the following functions:
+1) be formatted correctly according to good coding practices
+2) create a custom function that converts celsius to Kelvin
+3) uses this function to make a new column in the data frame that is the tank 
+temperatures in degrees kelvin. 
+3) plots a histogram of all of the tank data (for both species) in degrees 
+kelvin (plot should also have proper formatting)
+
+
