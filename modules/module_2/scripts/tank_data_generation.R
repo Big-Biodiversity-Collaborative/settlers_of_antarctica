@@ -14,8 +14,8 @@ fish_tanks = tibble(tank_id = c(1:1000),
                                  rnorm(n = 750, mean = 23.89, sd = 0.5), 
                                  rnorm(n = 250, mean = 15, sd = 0.5)), 
         num_fish = ifelse(species == "tilapia", 
-                                 round(rnorm(n = 750, mean = 100, sd = 1)), 
-                                 round(rnorm(n = 250, mean = 75, sd = 1))), 
+                                 round(rnorm(n = 750, mean = 100, sd = 3)), 
+                                 round(rnorm(n = 250, mean = 75, sd = 8))), 
         day_length = ifelse(species == "tilapia", 
                           round(rnorm(n = 750, mean = 10, sd = 1)), 
                           round(rnorm(n = 250, mean = 12, sd = 1))), 
@@ -32,4 +32,9 @@ fish_tanks %>%
   geom_histogram(binwidth = 1)
 
 # writing to csv
-write_csv(fish_tanks, path = "./modules/module_2/data/fish_tank_data.csv")
+# write_csv(fish_tanks, path = "./modules/module_2/data/fish_tank_data.csv")
+# 
+# Note, be careful overwriting this - I cherrypicked high density tanks with 
+# high infection rates... if you re-run and re-write the csv file here, you'll 
+# lose those modifications and have to go back in to make them again. 
+
