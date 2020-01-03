@@ -32,4 +32,4 @@ fish_tanks %>%
   geom_histogram(binwidth = 1)
 
 # writing to csv
-write_csv(fish_tanks, file = "./modules/module_2/data/fish_tank_data.csv")
+write_csv(fish_tanks, path = "./modules/module_2/data/fish_tank_data.csv")

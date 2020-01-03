@@ -47,3 +47,75 @@ converts celsius to farenheit and apply it to our entire data set, in just a few
 lines of code.   
 
 ```{r}
+# Here is the basic syntax
+
+new_sum = function(x,y){
+  z = x+y
+  return(z)
+}
+
+new_sum(2,4)
+```
+
+## Building a custom function for converting celsius to farenheit  
+In your groups, build a custom function called `c_to_f()` that converts a 
+single value of celsius to farenheit. Check out the web for the equation on how 
+to do this. Be prepared to show your code and run some test values.  
+
+```{r}
+c_to_f = function(c = NULL){
+  f = (c*1.8)+32
+  return(f)
+}
+
+c_to_f(c = 40)
+```
+
+## Thinking about iteration and looping  
+
+So, we have a great function that we can use to convert our celsius values to 
+farenheit, but how do we apply that to everything... we've built the function 
+for one value, not for a vector of values...  
+
+Quickly in your groups, brainstorm some ideas on how you might implement this. 
+
+## Three main ways to iterate  
+1. for loops  
+2. apply functions  
+3. Re-write your function  
+
+Next time we'll cover some options, but for now... the solution is actually 
+really simple. The function we built actually will auto-iterate over a vector...
+because R is amazing at doing vector stuff. Check it out. 
+
+```{r}
+c_to_f(fish_tank_data$avg_daily_temp)
+
+# So, we can do something like this
+fish_tank_data = fish_tank_data %>%
+  mutate(avg_daily_temp_F = c_to_f(avg_daily_temp))
+
+fish_tank_data
+
+```
+
+## Filtering based on our new converted column  
+Ok, so we've solved one problem, but not the main one... who remembers the 
+original question we set out to examine here?  
+
+**How many tanks are below the temperature cutoffs for each species?**
+
+Take the rest of the class period to work on figuring this out (hint: remember 
+the group_by and filter and summary functions we used in module 1?). If you can't finish, 
+work in groups remotely to figure out a solution by the beginning of the next 
+class.  
+
+```{r}
+fish_tank_data %>%
+  filter(species == "tilapia" & avg_daily_temp_F < 75 |
+         species == "trout" & avg_daily_temp_F < 59) %>%
+  group_by(species) %>%
+  summarize(n = n())
+
+```
+  
