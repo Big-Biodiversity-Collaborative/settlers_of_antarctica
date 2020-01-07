@@ -1,0 +1,24 @@
+---
+title: "module_2_5"
+author: "Keaton Wilson"
+date: "1/7/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Group Project  
+We've covered a lot so far in this module - basic plotting, data exploration, 
+simulation, functions, iteration. Now it's time to start putting it all together.  
+
+Last time, we decided that tank temperatures weren't that different between 
+tanks with large amounts of sick fish and those without. Now it's time to figure 
+out if there are any culprits at all.  
+
+Your job today is to create a script and present analyses that do the following:  
+1. Examine other factors that may be the cause of the disease outbreak.  
+2. Use whatever tools you'd like (simulation, functions, plots, summaries)
+3. Be prepared to present your findings to your classmates and convince them 
+that you know what the root of the problem is. 

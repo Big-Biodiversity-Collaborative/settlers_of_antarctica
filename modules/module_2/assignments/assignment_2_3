@@ -1,0 +1,17 @@
+Assignment 2-3 - Simualation, understanding complicated code, code poaching 
+
+Check out this article: 
+https://towardsdatascience.com/every-data-scientist-needs-to-read-these-simulation-stories-7be0531e782f
+
+Examining other folks' code is a key tool in the DS toolkit - it's often frustrating, 
+but you invariably learn new things every time you do it. Code poaching is fair game, 
+just make sure to comment/cite where stuff came from!
+
+1) Read through the article, and give a brief (less than 100 word) summary of 
+what the authors are trying to convey. 
+2) Focus on one of the examples, specifically outline the problem (100 words or less)
+3) Try running the code for yourself. 
+4) Identify 2 new things you learned from this code that we haven't covered in class
+5) Identify 2 things you don't understand about the code and have questions about. 
+
+(Please reference line numbers in the code when specifying parts 4 and 5 above). 
