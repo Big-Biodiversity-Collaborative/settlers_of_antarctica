@@ -1,14 +1,17 @@
-Assignment 2-2
+Assignment 2_2 - Functions and Iteration 
 
-Submit a script that uses the fish tank data (https://tinyurl.com/tbyskxl). 
-The script should perform the following actions:
-1) Write a function that replicates the same sampling procedure we developed to
-sample the number of sick fish in a given tank, except sample tank temperature. 
-2) The script should follow proper formatting guidelines and best coding 
-practices we've discussed. 
-3) Sample for each species separately (you can include this in your function, 
-or run the function twice on two filtered data sets). 
-4) Report the 5-sample mean temperature for each species. 
-5) Briefly, in a commented sentence at the end of the script, judge whether this
-mean value is below the physiological threshold for immunsuppresion that we 
-discussed (for each species). 
+Use the fish tank data we've been working with (https://tinyurl.com/tbyskxl). 
+
+Using the methodology for building functions and iteration that we've learned in
+the last two classes, build a script that:
+1) follows best coding practices and formatting 
+2) Creates a function that generates a 15 sample mean of temperature from a 
+normal distribution where the mean is 75º F and there is high variability (e.g.
+sd = 4).
+3) Using the sample() function, sample 15 random temperatures of tilapia tanks. 
+4) Compare the mean of this vector to the mean from your function 
+(remember, you'll need to convert from celsius to farenheit, or vice 
+versa here). 
+5) Create a loop (or loops) that generates this 15-tank comparison 100 times. 
+6) Summarize these data in a meaningful way - either through plots, text or 
+both. 

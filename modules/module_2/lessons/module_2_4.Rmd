@@ -1,0 +1,115 @@
+---
+title: "Module 2_4 - Simulation and Iteration"
+author: "Keaton Wilson"
+date: "1/7/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Review  
+Let's take a minute to review as a class what we've talking about, what the 
+problem is and where we're at with it.  
+1. What is the main problem we're trying to address?  
+2. What did we cover last time in class?  
+3. Where did we leave off?  
+
+Ultimately, we have a contaminated food supply that we think is making people
+sick. We've noticed a correlation between the amount of fish in someone's diet 
+and now we're using simulation to compare our expectations for disease in the 
+tanks to what we measured in our small (50 tank sample).   
+
+Last time, we worked through building a function to test this, but we realized 
+it has limited utility because it only generates one mean... and this mean 
+changes every time, because of the nature of random draws from a distribution.  
+
+## Iteration  
+Today we're going to dive into one of the most important topics in programming, 
+iteration. Something we touched on before, but haven't really explored. The 
+ultimate goal here is to build a way to run through our function multiple times 
+and calculate a 'mean of means', which should give us a better overall picture 
+of what our expected value is.  
+
+## loops  
+The most basic way to do iteration is with loops. It's essentially telling R to 
+keep doing things a certain number of times, and then doing something with the 
+outputs for each iteration.   
+
+```{r}
+# Let's use a basic example, but one which we would never actually use, as R
+# does basic vectorized stuff like this by default. 
+# Let's generate a logarithm of each value in a vector and output this to a new 
+# vector. 
+
+vec_in = c(2, 6, 8, 9, 5)
+
+for(i in 1:length(vec)){
+  log(vec[i])
+}
+
+# Ok... but nothing happened....
+# We have to set up some other stuff first
+
+# output vector to feed into
+vec_out = c()
+for(i in 1:length(vec_in)){
+  x = log(vec[i])
+  vec_out[i] = x
+}
+vec_out
+```
+
+Things to remember about loops:  
+1. Remember to initialize an object before the loop to feed into  
+2. Proper syntax - curly braces!  
+3. Iterating through pieces with the variable you're using (i, in the example 
+above).  
+
+## Applying loops to our simulation function  
+
+We're now going to run our simulation function 100 times. Quick check in - why 
+are we doing this?!  
+
+```{r}
+# loading in data
+library(tidyverse)
+fish_tank_data = read_csv("https://tinyurl.com/tbyskxl")
+
+# function
+fish_sick_simulator = function(mean = NULL, species = "trout", sd = NULL){
+  if(species == 'trout'){
+    sick_fish_vec = round(rnorm(n=17, mean = mean, sd = sd))
+    return(mean(sick_fish_vec)/74)
+  } else {
+    sick_fish_vec = round(rnorm(n=33, mean = mean, sd = sd))
+    return(mean(sick_fish_vec)/100)
+  }
+}
+
+# Double check our function to make sure it's still working  
+# We're working on Tilapia first! 
+
+fish_sick_simulator(mean = 4, species = "tilapia", sd = 2)
+
+# Let's loop it!  
+sim_vec = c()
+for(i in 1:100){
+  sim_vec[i] = fish_sick_simulator(mean = 4, 
+                                   species = "tilapia", 
+                                   sd = 2)
+}
+
+sim_vec
+mean(sim_vec)
+
+```
+
+## Group Challenge  
+Construct a similar simulation for trout. Be prepared to answer the following
+questions:  
+1. Do the sickness percentages measured by the aquaculture team line up with our
+expecations? 
+2. Are there differences between the two species? What does this point to?  
+
