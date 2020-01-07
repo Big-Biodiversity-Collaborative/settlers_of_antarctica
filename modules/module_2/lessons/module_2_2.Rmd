@@ -1,5 +1,6 @@
 ---
-title: "Module 2-2 - Functions"
+title: "Module 2_2 - Functions"
+author: "Keaton Wilson"
 output: html_document
 ---
 
