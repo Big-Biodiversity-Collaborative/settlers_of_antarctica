@@ -1,0 +1,24 @@
+Module 2 Review/Practice
+
+Data: https://tinyurl.com/yg886rqz
+
+This dataset will allow you practice the main things we covered in this section:
+1. Basic plotting (scatter plots and histograms)
+2. Making functions
+3. Iterating using loops
+4. Simulations
+
+Data summary: The aquaculture scientists on team antarctica have been working on
+developing a new diet for tilapia based on soy-protein, and are interested in 
+whether incorporating this into fish diets will result in faster growth rates. 
+They've provided us with this data to analyze. 
+
+Main questions: 
+1) Is the average tank temperature different than what we would expect from a 
+320-tank sample based on our pre-defined assumptions of 75º F average tank temp?
+(sd = 2, mean = 75). 
+2) Does an increase in soy protein percentage correlate with a bigger day-30 weight
+for Tilapia?
+3) Does temperature have any effect on day 30 weight?
+4) What is your reccomendation to the aquaculture team?
+
