@@ -131,4 +131,45 @@ test_func = function(input_vec){
 ```
 
 ### Question 8  
+You are tasked with creating a simulation that for the average number of trout in
+a recirculating aquaculture tank that are infected with a parasite that causes 
+whirling disease. Rates of this disease are typically low but there is high 
+variance, and your simulation randomly draws values from a normal distribution 
+with a mean of 1.2 (low) and a standard deviation of 4 (high). What is one 
+problem with this simulation (hint: think about the data that would be 
+generated and whether it makes sense in the real world). In 1-5 sentences, 
+describe the problem.  
 
+### Question 9  
+Pick below that best describes a major flaw in the code block presented. 
+```{r, eval=FALSE}
+input_vec = c(1,2,3,4,5,6,7,8,9,10)
+output_vec = c()
+for(k in 1:10){
+  value = sqrt(k)/(k^2)
+  return(k)
+}
+```
+a. There is nothing wrong with this code block, it returns an appropriate 
+output vector  
+b. The length of the output vector isn't defined on initialization  
+c. k is an innappropriate choice of variable, it should be i  
+**d. The output vector isn't populated within the for loop**
+e. The loop isn't generalizeable beyond a vector 10 units long  
+
+### Question 10  
+Examine the figure below that explores the data we used for review (size of fish 
+ at day 30 of development as a function of different amounts of soy protein in 
+ their diet. What conclusions can you draw from this data exploration. How might
+ the figure be improved? What other variables would you want to examine for 
+ further analysis? (5-10 sentences).
+```{r}
+library(tidyverse)
+df = read_csv("https://tinyurl.com/yg886rqz")
+glimpse(df)
+
+df %>%
+  ggplot(aes(x = perc_soy_protein, y = day_30_weight, color = factor(tank_id))) +
+  geom_jitter(width = 0.025)
+
+```
