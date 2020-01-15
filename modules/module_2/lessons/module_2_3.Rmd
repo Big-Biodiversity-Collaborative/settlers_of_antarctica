@@ -25,9 +25,9 @@ and we definitely don't know what kinds of factors are contributing to this
 problem (if there is one!).  
 
 Our first challenge is that we can't sample the disease rate in all tanks - it's
-too expensive and it takes too long. So we're going to take a sub-sample (50 
-tanks, or 25 from each species). Our aquaculture scientists have shared this 
-data with us, and we can access it here: 
+too expensive and it takes too long. So we're going to task our aqauaculture  
+scientists to take a sub-sample (50 tanks). Our aquaculture scientists have shared this 
+data with us, and we can access it here:  
 [https://tinyurl.com/yf3pv3am ](https://tinyurl.com/yf3pv3am).  
 
 Let's scope it out:
@@ -95,6 +95,15 @@ outside.
 # We can use the function rnorm to randomly draw values from a normal 
 # distribution that we set up ahead of time.  
 
+# Let's just plot a normal distribution  
+x = seq(-10, 10, length = 500)
+y = dnorm(x, sd = 1)
+y2 = dnorm(x, sd = 4)
+
+plot(x, y, type = "l")
+lines(x, y2, type = "l", col = "blue")
+
+#Discussion of what this means when we're simulating data
 rnorm(n = 1, mean = 4, sd = 1)
 
 sick_tilapia_sim = rnorm(n = 33, mean = 4, sd = 1)
