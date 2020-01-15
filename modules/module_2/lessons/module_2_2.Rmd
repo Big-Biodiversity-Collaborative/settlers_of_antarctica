@@ -7,8 +7,19 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## Learning Objectives  
+1. Students will be able to recall some fundamental components of the biology 
+of recirculating aqauculture systems and udnerstand how these components link 
+to the problem at hand - particularly linking environmental tank conditions to 
+physiology which in turn can affect disease rates.  
+2. Students will practice preliminary data explorations on tank data.  
+3. Students will be able to create custom functions that perform simple tasks 
+(converting values in celsius to farenheit), with an eye to the utility of this 
+generalizeable programming technique.  
+4. Students will practice data summary techniques from module 1, particularly 
+tidyverse syntax. 
 
-## Data Exploration  
+## Data Exploration  - query to the class? Where did we leave off last time?
 So, it does seem like there is something wrong with the fish, given the 
 correlation we found earlier. Let's check out our tank data. 
 

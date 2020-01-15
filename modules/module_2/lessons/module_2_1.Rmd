@@ -6,6 +6,15 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## Learning Objectives  
+1. Students will become familiar with the real-world problem for this module - 
+food poisoning due to an outbreak of disease in one of the species of fish that 
+is grown in recirculating aquaculture systems.  
+2. Students will be be able to generate two types of plots using base R syntax 
+to visualize single variables (histograms and distributions) and two variables 
+(scatterplots).
+3. Students will develop visual-thinking skills to create visualizations that 
+allow them to explore patterns in data, draw inferences and create solutions.  
 
 ## Introduction to the problem  
 Overall, the issue here is that we have a wave of people getting sick across 
@@ -17,6 +26,8 @@ The two main sources of food that are grown on site and distributed to team
 members are [plants grown in hydroponic greenhouses](https://thespoon.tech/scientists-in-antarctica-grow-food-without-soil-or-sunlight-get-ready-mars/). 
 (mostly swiss chard, cucumbers and radishes) and fish (tilapia, a tolerant warm
 -water species).  
+
+**Diagram this next part on the board**  
 
 We have a good set of data on team members that are sick, and how much fish or 
 plant material they incorporate into their diets (team members vary in the 
