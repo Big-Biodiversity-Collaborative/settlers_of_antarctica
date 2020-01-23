@@ -21,5 +21,13 @@ collars = data.frame(collar_id = seq(1:100),
                                       rnorm(n = 53, mean = 86, sd = 4)), 
                      signal_distance = c(rnorm(n = 47, mean = 4300, sd = 5),
                                          rnorm(n = 53, mean = 2000, sd = 5)), 
-                     fail = c(rbinom(n = 47, size = 1, prob = 0.1), 
+                     fail = c(rbinom(n = 47, size = 1, prob = 0.07), 
                               rbinom(n = 53, size = 1, prob = 0.3)))
+
+# Checking
+collars %>% 
+  group_by(maker) %>%
+  summarize(mean_fail = mean(fail))
+
+#writing to csv
+write_csv(collars, path = "./modules/module_3/data/collar_data.csv")
