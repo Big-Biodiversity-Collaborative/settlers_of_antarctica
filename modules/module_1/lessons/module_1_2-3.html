@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -332,6 +331,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -388,6 +388,7 @@ summary {
 <div id="check-in-5-minutes" class="section level3">
 <h3>Check-in (5 minutes)</h3>
 <p>For those using their own computers? Successful installation? If there are a few that had problems or didn’t get to it, do it now… ask folks sitting next to you for help. For those on classroom machines - open up RStudio and poke around a bit.</p>
+<p>We will also set up the new groups now! Rearrange!</p>
 </div>
 <div id="what-is-an-ide-interactive-development-environment-10-minutes" class="section level3">
 <h3>What is an IDE (interactive development environment)? (10 minutes)</h3>
@@ -539,6 +540,75 @@ y = c(1,2,3,4,5,6)
 
 
 # R does everything in vectors</code></pre>
+</div>
+<div id="dimensional-data-functions-helpfiles" class="section level2">
+<h2>2-dimensional data, functions, helpfiles</h2>
+<p>Most of the data you will encounter is two-dimensional, i.e. it has columns and rows (should be familiar for those of you who have worked with Excel before). R is really great at working with these types of data.</p>
+<pre class="r"><code>new_df = data.frame(sex = c(&quot;M&quot;, &quot;F&quot;, &quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;), 
+                    height = c(182, 170, 191, 151, 150, 161))
+
+new_df</code></pre>
+<pre><code>##   sex height
+## 1   M    182
+## 2   F    170
+## 3   M    191
+## 4   F    151
+## 5   F    150
+## 6   M    161</code></pre>
+</div>
+<div id="discussion-point.-this-is-a-really-simple-data-set-but-lets-come-up-with-some-questions.-lets-write-them-on-the-board." class="section level2">
+<h2>Discussion point. This is a really simple data set, but let’s come up with some questions. Let’s write them on the board.</h2>
+<p>Probably going to lead to the mean height overall, and for men and women.</p>
+<pre class="r"><code># Specifying certain columns
+new_df$height</code></pre>
+<pre><code>## [1] 182 170 191 151 150 161</code></pre>
+<pre class="r"><code>mean(new_df$height)</code></pre>
+<pre><code>## [1] 167.5</code></pre>
+<pre class="r"><code># but what about men and women separately?
+
+new_df[,2]</code></pre>
+<pre><code>## [1] 182 170 191 151 150 161</code></pre>
+<pre class="r"><code>new_df[new_df$sex == &quot;F&quot;,]</code></pre>
+<pre><code>##   sex height
+## 2   F    170
+## 4   F    151
+## 5   F    150</code></pre>
+<pre class="r"><code>mean(new_df[new_df$sex == &quot;F&quot;,2])</code></pre>
+<pre><code>## [1] 157</code></pre>
+<pre class="r"><code>mean(new_df[new_df$sex == &quot;M&quot;, 2])</code></pre>
+<pre><code>## [1] 178</code></pre>
+</div>
+<div id="group-challenge---using-helpfiles-on-functions-using-functions" class="section level2">
+<h2>Group Challenge - Using helpfiles on functions, using functions</h2>
+<p>As a group, find the standard deviation <code>sd()</code> of the height of both males and females and determine which is larger. Additionally, come up with a definition of standard deviation, use the helpfile to find out how the function works, and be prepared to show the code you used.</p>
+</div>
+<div id="data-classes" class="section level2">
+<h2>Data classes</h2>
+<p>There are a few main types in R, and they behave differently:<br />
+1. Numerical<br />
+2. Character<br />
+3. Integer<br />
+4. Logical<br />
+5. Complex<br />
+6. Factors (kind of)</p>
+</div>
+<div id="the-big-takeaways" class="section level2">
+<h2>The big takeaways:</h2>
+<ol style="list-style-type: decimal">
+<li>You can use <code>class()</code> to determine the class (or some easier ways for big dataframes that we’ll cover later in the course)<br />
+</li>
+<li>Columns that end up being character vectors can trip you up a lot<br />
+</li>
+<li>Vectors must be of all the same data type</li>
+</ol>
+<pre class="r"><code># Comparison
+1 + 1 + 1 + 1
+&quot;1&quot; + &quot;1&quot; + &quot;1&quot; + &quot;1&quot;
+
+vec = (1, 1.000, &quot;1&quot;, TRUE)</code></pre>
+</div>
+<div id="quick-challenge---what-data-type-is-the-is-the-sex-column-of-the-data-frame-we-just-used-discussion-of-why-it-isnt-character" class="section level2">
+<h2>Quick challenge - what data type is the is the sex column of the data frame we just used? Discussion of why it isn’t character?</h2>
 </div>
 </div>
 

@@ -2,7 +2,9 @@
 title: "Settlers of Antarctica - Module 1 - Days 2-3"
 author: "Keaton Wilson"
 date: "11/22/2019"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -21,6 +23,8 @@ generally describe the advantages of using an IDE.
 
 ### Check-in (5 minutes)  
 For those using their own computers? Successful installation? If there are a few that had problems or didn't get to it, do it now... ask folks sitting next to you for help. For those on classroom machines - open up RStudio and poke around a bit.  
+
+We will also set up the new groups now! Rearrange!  
 
 ### What is an IDE (interactive development environment)? (10 minutes)  
 Get on the web - look up the definition of an IDE, and focus on RStudio. What are some advantages of using an IDE. Why do you think we're using an IDE over base R? Do this in your group. Come up with an answer to each question above and be ready to report out.  
