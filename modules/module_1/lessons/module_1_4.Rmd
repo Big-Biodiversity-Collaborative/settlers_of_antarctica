@@ -2,7 +2,9 @@
 title: "Settlers of Antarctica - Module 1 - Day 4"
 author: "Keaton Wilson"
 date: "12/4/2019"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -41,7 +43,7 @@ library(tidyverse)
 climate_df = read_csv("../data/GlobalLandTemperaturesByMajorCity.csv")
 
 # call the climate data... this looks a bit different
-climate_df
+#climate_df
 
 # It's a tibble! Like a dataframe but better. :) Lots of information to dissect here. Let's look at another way to quickly view our data.  
 
@@ -58,8 +60,8 @@ Let's use our first function, select.
 # Select at its core allows you pick out a selection of columns from your data
 # Can folks remember how do this with base R?
 
-climate_df$dt
-climate_df[,1:2]
+# climate_df$dt
+# climate_df[,1:2]
 
 #Select does this, but with more power. 
 select(climate_df, dt)
@@ -76,7 +78,7 @@ slice(climate_df, 1:4)
 
 `filter()` allows you filter rows by certain conditions. Recall that we did this a bit with base R.  
 
-```{r}
+```{r, evaluate=FALSE}
 
 # base R
 climate_df[climate_df$Country == "United States",]
