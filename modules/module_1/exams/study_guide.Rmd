@@ -2,7 +2,9 @@
 title: "Module 1 Study Guide"
 author: "Keaton Wilson"
 date: "12/21/2019"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -30,6 +32,7 @@ We spent a lot of time in this module becoming familiar with how to use the RStu
 
 ## Programming 101 in R  
 We covered a lot of ground in a short amount of time on introductory programming. This includes basic R syntax such as assignments, operators, data classes, commenting and vectors.  
+
 ### Questions  
 1. Explain the difference between what is happening in the two code blocks below.   
 ```{r}
@@ -50,4 +53,42 @@ print(z)
 5. Thinking forward to the work and classes to come, why do you think these particular peices of syntax/knowledge are important?  
 
 ## Programming 102 in R  
-We used previously-built skills to delve into more relastic workflows of exploring data. 
+We used previously-built skills to delve into more relastic workflows of exploring data.  
+
+### Questions  
+1. How do you create a brand new dataframe in R?  
+2. Can you create a dataframe with two columns, one 22 rows long and one 18 rows long?  
+3. In base R, how do you select just a certain column of a dataframe?  
+4. How would you select just rows 1:8?  
+5. What kind of data class is the following vector: vec = c("TRUE", "FALSE", "TRUE", "TRUE", "TRUE")
+
+## Experimental Design  
+We did a whole day working on an a group-based experimental design module - 
+students designed their own experiment, received critique and discussed it, and 
+finally revised their work to incorporate the discussion and critique.  
+
+### Questions  
+Can you describe what a control is? Why is it important?
+If I gave you an experiment example, could you critique the design? 
+
+## 2d-data, libraries, tidyverse  
+We worked through some of the core concepts and tools of the tidyverse, 
+including the pipe, and core functions (select, filter, glimpse, slice).  
+
+### Questions  
+1. Be comfortable with the workflow and chaining things together - creating a new dataframe that is a subset of an existing dataframe that filters rows and columns.  
+2. What does the pipe (%>%) do?  
+3. How do the select() and filter() functions differ?
+4. Why do have to use library(tidyverse) before running the filter() function?
+5. What does the following code do: 
+```{r, eval = FALSE}
+data %>%
+  filter(data$species == "Gulo gulo") %>%
+  select(ID, sex, num_of_attacks, rabies_titer)
+
+```
+
+
+
+
+

@@ -1,0 +1,58 @@
+---
+title: "Module 3-1"
+author: "Keaton Wilson"
+date: "2/6/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Introduction to the Problem and Summarizing Data  
+
+## The challenge  
+Part of the food that folks are being fed with are fish that are caught, not 
+farmed (as in the previous module). These fish are caught by members of team 
+antarctica, but there is extreme risk involved (think Deadliest Catch, but 
+colder).  
+
+One of the main hazards to these teams are leopard seals - they're apex 
+predators in this ecosystem, and can cause serious injury, especially when large 
+schools of fish are involved (a researcher was killed by a Leopard Seal in 
+Antarctica in 2003).  
+
+One way we've worked to remove some of this danger is by working with large 
+mammal researchers to place radio collars on a number of seals that live in 
+areas that are typically fished. Fishing boats are equipped with radios that can
+detect the presence of seals in the area and avoid high-risk sites.  
+
+In recent months, a problem has arisen. Some of the collars are failing, 
+leading to some very close calls - one team member was pulled into the water 
+after attempting to untangle a net when a seal lunged at some fish trapped in 
+the net.  
+ 
+The large mammal team (they work on orcas as well as leopard seals) replaces 
+collars frequently, based on the manufacters reccomendations for battery life 
+and general wear and tear, but it seems as if some of the collars are dying 
+earlier than expected and putting our team in danger. 
+
+We've been tasked with determining why the units are failing and if we can tie 
+it to a particular manufacturer (we've sourced radio collars from two different
+companies).  
+
+## The Data  
+
+Our data on collars can be accessed here: https://  
+
+Let's explore and talk about the data a bit:  
+1. Two manufacturers  
+2. Battery life - The average number of days a particular collar lasts (this is
+recorded in the unit and stored when the battery dies)  
+3. Signal distance - the maximum signal distance that a particular collar was 
+recorded at.  
+4. Fail - collars that have failed in the past (e.g. they've been recovered 
+from seals that were noticed by the team but that didn't ping the radio 
+equipment).  
+
+
+ 

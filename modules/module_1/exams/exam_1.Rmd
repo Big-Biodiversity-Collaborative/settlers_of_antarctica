@@ -23,7 +23,7 @@ b. Bottom right: Files and Help, Top right: Environment
 c. Bottom right: Scripts and Help, Top right: Environment
 d. Bottom right: Packages and Viewer, top right: Console
 
-2. What is the correct code for loading up the helpfile for `install_github()` function from the devtools packge that you haven't loaded into your working environment?  
+2. What is the correct code for loading up the helpfile for the `install_github()` function from the devtools packge that you haven't loaded into your working environment?  
 a. `??install_github`  
 b. `?install_github`  
 c. `?devtools::install_github`  
@@ -97,7 +97,7 @@ d. read_csv()
 e. devtools::install_github()  
 
 
-10. What value is printinted in the console from the code below.  
+10. What value is printed in the console from the code below.  
 
 vec_1 = c(1,2,20,24)
 vec_2 = c(1,1,1,4)
