@@ -14,7 +14,7 @@ library(tidyverse)
 # noted or collected by fishing teams on a leopard seal that posed a threat, 
 # but didn't ping on their instruments).
 
-collars = data.frame(collar_id = seq(1:100),
+collars = tibble(collar_id = seq(1:100),
                      maker = c(rep("Collarium Inc.", 47), 
                                rep("Budget Collars LLC", 53)), 
                      battery_life = c(rnorm(n = 47, mean = 120, sd =4), 

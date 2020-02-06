@@ -54,5 +54,8 @@ recorded at.
 from seals that were noticed by the team but that didn't ping the radio 
 equipment).  
 
+## Group Challenge 1 - Writing a summary function  
+
+
 
  
