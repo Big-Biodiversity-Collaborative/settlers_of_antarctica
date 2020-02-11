@@ -42,7 +42,7 @@ companies).
 
 ## The Data  
 
-Our data on collars can be accessed here: https://  
+Our data on collars can be accessed here: https://tinyurl.com/sp7b25x  
 
 Let's explore and talk about the data a bit:  
 1. Two manufacturers  
@@ -55,7 +55,40 @@ from seals that were noticed by the team but that didn't ping the radio
 equipment).  
 
 ## Group Challenge 1 - Writing a summary function  
+We covered how to do grouped summaries in R in Module 1 (and practiced a bit
+in module 2), while also covering how to write your own custom functions in 
+module 2. It's time to put this together. Write your own custom function that 
+does the following:  
+1. Summarizes the data by calculating the mean, min and max for battery life 
+and signal distance, while counting up the number of failures. You'll want to
+do this for both manufacturers. 
+2. Think about how to write this function to make it generalizeable to a new 
+data set... We'll discuss this afterwards. But useful to have this conversation 
+within your groups and think about the best way possible. 
 
+```{r}
+library(tidyverse)
+
+collars = read_csv("https://tinyurl.com/sp7b25x ")
+collars %>%
+  mutate(fail = as.logical(fail), 
+         maker = as.factor(maker)) %>%
+  select(-collar_id) %>%
+  group_by(maker) %>%
+  summarize_if(is.numeric, list(min = min, max = max, mean = mean)) %>%
+  select(-contains("collar_id"))
+  
+summarizer = function(data = NULL){
+  data %>%
+    mutate(fail = as.logical(fail), 
+           maker = as.factor(maker)) %>%
+    select(-collar_id) %>%
+    group_by(maker) %>%
+    summarize_if(is.numeric, list(min = min, max = max, mean = mean))
+  
+}
+
+```
 
 
  

@@ -1,6 +1,8 @@
 ---
 title: "Module 2-1"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -25,7 +27,7 @@ food contamination issue.
 The two main sources of food that are grown on site and distributed to team 
 members are [plants grown in hydroponic greenhouses](https://thespoon.tech/scientists-in-antarctica-grow-food-without-soil-or-sunlight-get-ready-mars/). 
 (mostly swiss chard, cucumbers and radishes) and fish (tilapia, a tolerant warm
--water species).  
+-water species and rainbow trout a cold-water species).  
 
 **Diagram this next part on the board**  
 
@@ -101,7 +103,7 @@ number of trips to the doctor in the past 6 months. Use proper labelling and
 aesthetic design principles to make it as visually appealing as possible.  
 
 ```{r}
-plot(x = sick$perc_fish, y = doctor_trips, 
+plot(x = sick$perc_fish, y = sick$doctor_trips, 
      xlab = "Percentage Fish in Diet", 
      ylab = "Number of Trips to Doctor", 
      main = NULL, 
