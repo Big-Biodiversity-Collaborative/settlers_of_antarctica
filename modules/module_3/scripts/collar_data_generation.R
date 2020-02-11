@@ -19,8 +19,8 @@ collars = tibble(collar_id = seq(1:100),
                                rep("Budget Collars LLC", 53)), 
                      battery_life = c(rnorm(n = 47, mean = 120, sd =10), 
                                       rnorm(n = 53, mean = 86, sd = 10)), 
-                     signal_distance = c(rnorm(n = 47, mean = 4300, sd = 17),
-                                         rnorm(n = 53, mean = 4100, sd = 17)), 
+                     signal_distance = c(rnorm(n = 47, mean = 4200, sd = 35),
+                                         rnorm(n = 53, mean = 4300, sd = 35)), 
                      fail = c(rbinom(n = 47, size = 1, prob = 0.07), 
                               rbinom(n = 53, size = 1, prob = 0.3)))
 
@@ -28,6 +28,9 @@ collars = tibble(collar_id = seq(1:100),
 collars %>% 
   group_by(maker) %>%
   summarize(mean_fail = mean(fail))
+
+ggplot(collars, aes(x = signal_distance, y = battery_life, col = maker)) +
+  geom_point()
 
 #writing to csv
 write_csv(collars, path = "./modules/module_3/data/collar_data.csv")
