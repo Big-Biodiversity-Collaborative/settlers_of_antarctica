@@ -54,7 +54,7 @@ recorded at.
 from seals that were noticed by the team but that didn't ping the radio 
 equipment).  
 
-## Group Challenge 1 - Writing a summary function  
+## Group Challenge 1 - Summarizing
 We covered how to do grouped summaries in R in Module 1 (and practiced a bit
 in module 2), while also covering how to write your own custom functions in 
 module 2. It's time to put this together. Write your own custom function that 
@@ -62,33 +62,48 @@ does the following:
 1. Summarizes the data by calculating the mean, min and max for battery life 
 and signal distance, while counting up the number of failures. You'll want to
 do this for both manufacturers. 
-2. Think about how to write this function to make it generalizeable to a new 
-data set... We'll discuss this afterwards. But useful to have this conversation 
-within your groups and think about the best way possible. 
-
 ```{r}
 library(tidyverse)
 
 collars = read_csv("https://tinyurl.com/sp7b25x ")
-collars %>%
+summary_1 = collars %>%
   mutate(fail = as.logical(fail), 
          maker = as.factor(maker)) %>%
   select(-collar_id) %>%
   group_by(maker) %>%
   summarize_if(is.numeric, list(min = min, max = max, mean = mean)) %>%
   select(-contains("collar_id"))
-  
-summarizer = function(data = NULL){
-  data %>%
-    mutate(fail = as.logical(fail), 
-           maker = as.factor(maker)) %>%
-    select(-collar_id) %>%
-    group_by(maker) %>%
-    summarize_if(is.numeric, list(min = min, max = max, mean = mean))
-  
-}
+
+summary_2 = collars %>%
+  mutate(fail = as.logical(fail), 
+         maker = as.factor(maker)) %>%
+  select(-collar_id) %>%
+  group_by(maker) %>%
+  summarize_if(is.logical, sum)
+
+final = bind_cols(summary_1, summary_2) %>%
+  select(-maker1)
 
 ```
 
+## Visualizing the Data - an introduction to a better way to visualize the data
+So far, we've used the base R plotting syntax, but there is another way. It's 
+part of the tidyverse and its from a package called ggplot2.  
 
- 
+Instead of explaining the syntax to you, we're going to do an in-class reading 
+assignment.  
+
+[Article to read](https://cfss.uchicago.edu/notes/grammar-of-graphics/)  
+
+Spend 10 minutes reading the article above (take notes!). When the time is up, 
+I'll signal you to get into your groups and discuss the article. There is a lot 
+of material here - make sure that you cover what the grammar of graphics is, 
+what the different components are, and how they relate to code structure and 
+syntax. We'll be iteratively building some ggplot code on the data above, and 
+I'll be asking groups to explain each part as we go - so be prepared!  
+
+```{r}
+ggplot(collars, aes(y = signal_distance, x = battery_life, col = maker)) +
+  geom_point()
+```
+
