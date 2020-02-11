@@ -17,10 +17,10 @@ library(tidyverse)
 collars = tibble(collar_id = seq(1:100),
                      maker = c(rep("Collarium Inc.", 47), 
                                rep("Budget Collars LLC", 53)), 
-                     battery_life = c(rnorm(n = 47, mean = 120, sd =4), 
-                                      rnorm(n = 53, mean = 86, sd = 4)), 
-                     signal_distance = c(rnorm(n = 47, mean = 4300, sd = 5),
-                                         rnorm(n = 53, mean = 2000, sd = 5)), 
+                     battery_life = c(rnorm(n = 47, mean = 120, sd =10), 
+                                      rnorm(n = 53, mean = 86, sd = 10)), 
+                     signal_distance = c(rnorm(n = 47, mean = 4300, sd = 17),
+                                         rnorm(n = 53, mean = 4100, sd = 17)), 
                      fail = c(rbinom(n = 47, size = 1, prob = 0.07), 
                               rbinom(n = 53, size = 1, prob = 0.3)))
 
