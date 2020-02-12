@@ -29,7 +29,7 @@ d. Bottom right: Packages and Viewer, top right: Console
 a. `??install_github`  
 b. `?install_github`  
 c. `?devtools::install_github`  
-d. `help(devtools::install_github)`  
+d. `help(install_github)`  
 e. a or d  
 f. a, d, or c  
 
@@ -64,11 +64,11 @@ antarctica_data[,1]
 "mean_temp" == mean(antarctica_data[,2])
 ```
 
-a. Lines 1,2, 11 have problems
+a. Lines 55,57, 64 have problems
 b. All lines have problems
-c. Only line 11 has problems
-d. Lines 8 and 2 have problems
-e. Lines 1 and 2 contain problems
+c. Only line 64 has problems
+d. Lines 61 and 57 have problems
+e. Lines 55 and 57 contain problems
 
 5. In the example above, explain the issues present in your answer (if your answer contains multiple issues, explain all of them).  
 
