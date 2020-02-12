@@ -65,7 +65,7 @@ do this for both manufacturers.
 ```{r}
 library(tidyverse)
 
-collars = read_csv("https://tinyurl.com/sp7b25x ")
+collars = read_csv("https://tinyurl.com/sp7b25x")
 summary_1 = collars %>%
   mutate(fail = as.logical(fail), 
          maker = as.factor(maker)) %>%
@@ -104,6 +104,9 @@ I'll be asking groups to explain each part as we go - so be prepared!
 
 ```{r}
 ggplot(collars, aes(y = signal_distance, x = battery_life, col = maker)) +
-  geom_point()
+  geom_point() +
+  xlab("Battery Life") +
+  ylab("Signal Distance") +
+  scale_color_discrete(name = "Collar Maker")
 ```
 
