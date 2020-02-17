@@ -1,0 +1,29 @@
+---
+title: "Study Guide for Module 2"
+author: "Keaton Wilson"
+date: "2/17/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Study Guide for Module 2 - Fish-ues (pronounced Fish-yews - get it?)  
+This is an overview of the material we covered in module 2, and should inform 
+the ideas, techniques and concepts that will be covered by Exam 2.  
+
+## Data Visualization and plotting in R  
+1. Be able to create simple scatterplots (2 variables) and histograms 
+(1 variable) for example data sets. 
+2. Understand and be able to replicate the base R syntax for these two plots:  
+  a. e.g. `plot(y = data$y_var, 
+           x = data$x_var, 
+           col = "purple", 
+           ylab = "This is the variable on the yaxis", 
+           xlab = "This is the variable on the xaxis")`
+3. Be able to draw insight and conclusions from different data visualizations, 
+and be able to map data types to different visualization types  
+4. Be able to recognize errors and critique poorly designed plots  
+
+## Functions  
