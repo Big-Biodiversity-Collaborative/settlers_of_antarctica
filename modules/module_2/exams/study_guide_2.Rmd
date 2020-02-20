@@ -27,3 +27,43 @@ and be able to map data types to different visualization types
 4. Be able to recognize errors and critique poorly designed plots  
 
 ## Functions  
+1.Recall the basic pattern of how functions operate:
+```{r}
+new_func = function(arg1, arg2){
+  arg1+arg2 = thing_3
+  return(thing_3)
+}
+```
+2. Be able to create simple functions that do things (e.g. compute means, 
+summaries, print things, etc). 
+3. Be able to critique and debug code for functions if I supplied code to you 
+contained problems.  
+
+## Iteration
+1. Be able to describe in your own words why iteration tools are important in R
+2. Be familiar and  be able to explain each component of how for loops operate  
+```{r}
+for(i in 1:10){
+  print(i)
+}
+```
+3. Be able to critique and debug a for loop.   
+4. Be able to describe the utility of linking functions and for loops - if I 
+gave you an example of this type of functionality, be able to de-construct it!  
+
+## Simulations and the normal distribution  
+1. Be able to draw a normal distributions with large and small
+standard deviations and label the means.  
+2. Be able to relate simulated draws from a normal distribution to real-world 
+scenarios (e.g. what happens when simulations draw data that don't make any 
+sense?)  
+3. Be able to generally describe the utility of simulations. Why are they useful
+ when might we use them?  
+4. What does the `rnorm()` function do?  
+
+## Aquaculture, Disease and Module Content  
+1. Recall and be able to discuss the fundamental problems associated with this
+module.   
+  a. Aquaculture techniques and challenges  
+  b. Environmental Conditions in tanks  
+  c. Linking environmental conditions to immune function  

@@ -1,7 +1,9 @@
 ---
 title: "Module 2_2 - Functions"
 author: "Keaton Wilson"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
