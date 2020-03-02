@@ -1,0 +1,18 @@
+---
+title: "Joins and k-nn"
+author: "Keaton Wilson"
+date: "2/28/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The Context  
+We're running short on tracking collars for leopard seals after pulling all of 
+the collars from Budget Collars (they seem to be failing more often, and their 
+battery life is terrible - putting our fish-harvesting team in danger).  
+
+One of our intrepid data science team members found an old box of collars and 
+some data on all of the collars ()
