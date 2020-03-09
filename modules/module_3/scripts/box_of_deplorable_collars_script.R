@@ -29,9 +29,10 @@ old_collars_new_data = tibble(collar_id = seq(1:100),
 
 # scrambling
 randomly <- function(x) sample(xtfrm(x))
-new_collars = collars %>% arrange(randomly(collar_id))
+new_collars = new_collars %>% arrange(randomly(collar_id))
 old_collars_new_data = old_collars_new_data %>% arrange(randomly(collar_id))
 
 #writing to csv
 write_csv(new_collars, path = "./modules/module_3/data/new_collars.csv")
 write_csv(old_collars_new_data, path = "./modules/module_3/data/old_collars_new_data.csv")
+
