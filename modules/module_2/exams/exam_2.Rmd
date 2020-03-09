@@ -2,7 +2,9 @@
 title: "Exam_2"
 author: "Keaton Wilson"
 date: "1/8/2020"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -27,7 +29,7 @@ You have data from ~750 tanks that includes, fish density, temperature and
 disease rate. You're interested in examining the distribution of pH values 
 across all tanks - what type of plot do you build to visualize these data?  
 a. a scatterplot  
-**b. a histogram**  
+b. a histogram  
 c. a box and whisker plot  
 d. a pie chart  
 e. a 3-dimensional scatterplot that includes all variables  
@@ -66,7 +68,7 @@ breaking the function.
 b. The functions sd and sqrt aren't defined explicitly. 
 c. Naming an object se within a function is confusing, as it overwrites an 
 existing named standard error function in R.  
-**d. The function doesn't return anything.**  
+d. The function doesn't return anything.  
 
 ### Question 4  
 Pick one of the topics/skills we worked on in this module (from the list below), 
@@ -101,8 +103,8 @@ Imagine you're drawing simulated data from two normal distributions using the
 functions) both have a mean of 4.6, but the first has the sd argument set to 1 
 and the second has it set to 5. What statement below is TRUE regarding the two 
 datasets generated from the `rnorm()` function?  
-**a. The second set will have a much wider range of values that deviate more from 
-the mean compared to the first set.**  
+a. The second set will have a much wider range of values that deviate more from 
+the mean compared to the first set. 
 b. The second set of data will be much tighter around the mean of 4.6.  
 c. The data sets will be similarly shaped, except the sd=5 argument will start 
 to turn the distribution into something more closely resembling the Poisson 
@@ -141,7 +143,7 @@ generated and whether it makes sense in the real world). In 1-5 sentences,
 describe the problem.  
 
 ### Question 9  
-Pick below that best describes a major flaw in the code block presented. 
+Pick the option below that best describes a major flaw in the code block presented. 
 ```{r, eval=FALSE}
 input_vec = c(1,2,3,4,5,6,7,8,9,10)
 output_vec = c()
@@ -154,13 +156,13 @@ a. There is nothing wrong with this code block, it returns an appropriate
 output vector  
 b. The length of the output vector isn't defined on initialization  
 c. k is an innappropriate choice of variable, it should be i  
-**d. The output vector isn't populated within the for loop**
+d. The output vector isn't populated within the for loop
 e. The loop isn't generalizeable beyond a vector 10 units long  
 
 ### Question 10  
 Examine the figure below that explores the data we used for review (size of fish 
  at day 30 of development as a function of different amounts of soy protein in 
- their diet. What conclusions can you draw from this data exploration. How might
+ their diet. What conclusions can you draw from this data exploration? How might
  the figure be improved? What other variables would you want to examine for 
  further analysis? (5-10 sentences).
 ```{r}

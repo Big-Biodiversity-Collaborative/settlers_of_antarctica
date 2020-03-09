@@ -15,4 +15,56 @@ the collars from Budget Collars (they seem to be failing more often, and their
 battery life is terrible - putting our fish-harvesting team in danger).  
 
 One of our intrepid data science team members found an old box of collars and 
-some data on all of the collars ()
+some data on all of the collars (it was a real challenge getting this data 
+off of an old floppy drive, but she managed). So we're going to spend the next
+lessons tackling two tasks: first, we're to work to join data sets together. 
+The main goal here is to create a single data set that includes the data 
+we have previously looked at for collars, the data on the new collars, as well 
+as the additional data on the old collars.  
+
+This is tricky, as we we cant just do simple rbinds and cbinds like we've done
+in the paste - the collar IDs need to be matched up with their counterparts 
+across datasets, and new collars need be added, but with the column that 
+contains maker ID missing.   
+
+Second, we'll dive into some machine learning. We'll talk a bit about what 
+machine learning is (and isn't) and then use a frequently used classification 
+algorithm, k-nearnest neighbors to predict which maker made which of our 
+unidentified collars.  
+
+## Joins  
+Being able to join together data from related tables is a key skill in data 
+science, and for working with larger data structures (databases with their 
+own languages, like SQL).  
+
+## Group Discussion - Joins in R
+Take 5 minutes to read through this [article](https://medium.com/@HollyEmblem/joining-data-with-dplyr-in-r-874698eb8898) 
+individually.  
+
+After this 5 minutes, discuss the questions below with your group. We'll then 
+discuss them as a class. Make sure that someone in the group (a reporter) can 
+report out answers to each of the questions below.  
+
+1. What's the difference between a left join and an inner join?  
+2. Can you think of a reason you would use an anti-join?  
+3. What type of join should we use to bind the three tables we're working on 
+with our seal collar data?  
+4. Can you draw a daigram that illustrates what a left-join does?  
+
+
+# Working through our data  
+Let's load in the data we're working with and work through implementing 
+our joins.  
+
+```{r}
+library(tidyverse)
+
+#loading in the data
+
+
+
+
+
+
+`
+

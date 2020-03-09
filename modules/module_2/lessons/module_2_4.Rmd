@@ -2,7 +2,9 @@
 title: "Module 2_4 - Simulation and Iteration"
 author: "Keaton Wilson"
 date: "1/7/2020"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -45,8 +47,8 @@ outputs for each iteration.
 
 vec_in = c(2, 6, 8, 9, 5)
 
-for(i in 1:length(vec)){
-  log(vec[i])
+for(i in 1:length(vec_in)){
+  log(vec_in[i])
 }
 
 # Ok... but nothing happened....
@@ -55,7 +57,7 @@ for(i in 1:length(vec)){
 # output vector to feed into
 vec_out = c()
 for(i in 1:length(vec_in)){
-  x = log(vec[i])
+  x = log(vec_in[i])
   vec_out[i] = x
 }
 vec_out

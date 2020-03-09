@@ -15,13 +15,9 @@ the ideas, techniques and concepts that will be covered by Exam 2.
 
 ## Data Visualization and plotting in R  
 1. Be able to create simple scatterplots (2 variables) and histograms 
-(1 variable) for example data sets. 
+(1 variable) for example data sets.   
 2. Understand and be able to replicate the base R syntax for these two plots:  
-  a. e.g. `plot(y = data$y_var, 
-           x = data$x_var, 
-           col = "purple", 
-           ylab = "This is the variable on the yaxis", 
-           xlab = "This is the variable on the xaxis")`
+  a. e.g. `plot(y = data$y_var, x = data$x_var, col = "purple", ylab = "This is the variable on the yaxis", xlab = "This is the variable on the xaxis")`  
 3. Be able to draw insight and conclusions from different data visualizations, 
 and be able to map data types to different visualization types  
 4. Be able to recognize errors and critique poorly designed plots  
