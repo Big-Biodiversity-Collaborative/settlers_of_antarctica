@@ -39,7 +39,7 @@ own languages, like SQL).
 
 ## Group Discussion - Joins in R
 Take 5 minutes to read through this [article](https://medium.com/@HollyEmblem/joining-data-with-dplyr-in-r-874698eb8898) 
-individually.  
+individually. https://tinyurl.com/rfmnvcs
 
 After this 5 minutes, discuss the questions below with your group. We'll then 
 discuss them as a class. Make sure that someone in the group (a reporter) can 
@@ -60,7 +60,9 @@ our joins.
 library(tidyverse)
 
 #loading in the data
-
+collars = read_csv("https://tinyurl.com/sp7b25x")
+new_collars = read_csv("https://tinyurl.com/t3of8rk")
+old_collars_new_data = read_csv("https://tinyurl.com/ufawycq")
 
 
 
