@@ -8,7 +8,7 @@ library(tidyverse)
 
 # creating 
 
-new_collars = tibble(collar_id = seq(101:150), 
+new_collars = tibble(collar_id = seq(101,150, by = 1), 
                      maker = rep(NA, 50),
                      battery_life = c(rnorm(n = 27, mean = 120, sd =10), 
                                         rnorm(n = 23, mean = 86, sd = 10)), 
