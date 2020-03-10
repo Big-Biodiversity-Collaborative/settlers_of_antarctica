@@ -53,7 +53,9 @@ knn_plot = function(data, model){
                data=data.frame(x=train[,1], y=train[,2], cls=cl)) +
     geom_point(aes(x=x, y=y),
                size=3, shape=1,
-               data=data.frame(x=train[,1], y=train[,2], cls=cl))
+               data=data.frame(x=train[,1], y=train[,2], cls=cl)) +
+    xlab("Normalized Battery Life") +
+    ylab("Normalized Signal Distance")
   
 }
 

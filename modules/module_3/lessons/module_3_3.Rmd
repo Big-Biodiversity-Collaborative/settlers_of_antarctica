@@ -202,9 +202,37 @@ mod_test = knn(train, test = test, cl, k = 7, prob=TRUE)
 
 # Let's plot our outcome. 
 
+# We're going to use a complicated plotting function I built to inpsect things
+# You don't need to understand the guts of this....
 source("https://tinyurl.com/r5bgd5h")
+
+knn_plot(knn_data, mod = mod_test)
 
 ```
 
+### Group discussion 
+Can you interpret this plot? Focus on a few points:  
+1. What are the gridded points?  
+2. What do the large points represent?  
+3. What are the lines here? 
 
 
+### Final steps - making predictions  
+So we've gotten to a point where we have a model we think is good (let's go 
+with k = 5). Let's use it on the test data we want to predict labels for!  
+
+```{r}
+glimpse(collars_to_label)
+
+# Getting ready to feed data in
+collars_to_label_norm = collars_to_label %>%
+  dplyr::select(battery_life, signal_distance) %>%
+  mutate(battery_life_norm = nor(battery_life), 
+         signal_distance_norm = nor(signal_distance)) %>%
+  dplyr::select(battery_life_norm, signal_distance_norm)
+
+mod = knn(train = train, test = collars_to_label_norm, cl = cl, k = 5)
+
+collars_to_label %>%
+  mutate(pred_class = mod)
+```
