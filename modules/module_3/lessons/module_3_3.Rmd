@@ -64,9 +64,144 @@ collars = read_csv("https://tinyurl.com/sp7b25x")
 new_collars = read_csv("https://tinyurl.com/t3of8rk")
 old_collars_new_data = read_csv("https://tinyurl.com/ufawycq")
 
+
+#explore 
+glimpse(collars)
+glimpse(new_collars)
+glimpse(old_collars_new_data)
+
+# Tell me about these data, how are we going to join them?
+```
+
+### Step 1. The join
+
+```{r}
+old_collars_full_data = collars %>% left_join(old_collars_new_data, 
+                                              by = c("collar_id", "maker"))
+
 ```
 
 
+### Step 2. a bind or a join? 
+So now we need to put the new collars in here...
 
-`
+How do we join this? Is it even a join at all?
+
+```{r}
+full = bind_rows(old_collars_full_data, new_collars)
+```
+
+
+## Prediction, Machine Learning  
+Now, we're going to work through an example of machine learning, which is 
+used in a variety of ways in data science - and across industries and 
+discplines.  
+
+The goal here is that we have ~ 50 unlabeled collars, and we want to be able to 
+predict who made them. Remember that Budget Collars LLC provided us with collars 
+that are failing, which is a risk to human life! So we need to throw out any 
+collars that we think were made by this company, and only incorporate new 
+collars from our unlabeled batch that we think were made by Collarium Inc. 
+
+### What is machine learning? Group reading and discussion.  
+Take 10 minutes to read [this article](https://medium.com/@randylaosat/a-beginners-guide-to-machine-learning-dfadc19f6caf). 
+
+I'll signal when 10 minutes is up. Get into your groups and discuss the following
+questions.  
+1. What is machine learning? Is it different than AI?  
+2. What types of general problems do machine learning techniques tackle?  
+3. Given what you've read, what kind algorithm type might we employ for our 
+problem?  
+
+## knn in R
+K-nearest neighbors is a classification algorithm (e.g. it attempts to predict 
+labels that are classes in R). We're going to work through a small example on 
+our data set before attempting to build the full model. 
+
+### Check-in  
+What are our classes/labels here?  
+
+### Data cleaning and prepping, splitting and normalizing
+
+First, we need to process our data a bit before we jump into our algorithm.  
+
+```{r}
+# remind ourselves of what full contains
+glimpse(full)
+
+
+# First, we want to filter out the missing data - we'll run our full algorithm 
+# on this later. 
+
+full_filtered = full %>%
+  filter(!is.na(maker))
+
+collars_to_label = full %>%
+  filter(is.na(maker))
+
+
+# Next, let's get rid of some unneeded columns
+filtered = full_filtered %>%
+  select(-collar_id, -fail,-antenna_length, -weight) %>% 
+  mutate(maker = as.factor(maker))
+```
+
+### Check-in  
+Why are we doing this? We're keeping it to two variables here... later on we'll
+do more!  
+
+On to normalization.  
+```{r}
+
+# custom function for normalizing
+nor <-function(x){
+  (x -min(x))/(max(x)-min(x))
+}
+
+knn_data = filtered %>%
+  mutate(battery_life_norm = nor(filtered$battery_life),
+         signal_distance_norm = nor(filtered$signal_distance)) %>%
+  select(-battery_life, -signal_distance)
+
+```
+
+### Check-in  
+Why are we doing this? Can you think of a good reason why we have to normalize 
+the values here? What does normalize mean?  
+
+### We have data that we're ready to put into our algorithm - but first we need 
+to figure out how the algorithm actually works. 
+
+We're going to watch a brief video: https://www.youtube.com/watch?v=MDniRwXizWo
+
+After we're finished, get into your groups and discuss the following points:  
+1. For our small, filtered data set with two variables, how would you draw a 
+simple diagram like in the video that demonstrates how k-nn is working?  
+2. Can you envision how this would work/what it would look like with more than 
+two variables?  
+3. What would happen if you increase or decrease K in the GoT example above, 
+or generally?  
+
+## Let's try our hand at k-nn
+
+```{r}
+#loading package to do knn
+#install.packages('class')
+library(class)
+
+#splitting the data up 
+train = as.data.frame(knn_data[,-1])
+cl = knn_data[,1] %>% pull()
+
+test = expand.grid(x=seq(min(train[,1]-0.5), max(train[,1]+0.5),
+                            by=0.1),
+                      y=seq(min(train[,2]-0.5), max(train[,2]+0.5), 
+                            by=0.1))
+
+mod_test = knn(train, test = test, cl, k = 7, prob=TRUE)
+
+
+```
+
+
 
