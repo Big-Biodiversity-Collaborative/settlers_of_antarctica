@@ -4,7 +4,7 @@
 # 2020-03-10
 
 #packages
-library(mass)
+library(MASS)
 library(class)
 library(tidyverse)
 

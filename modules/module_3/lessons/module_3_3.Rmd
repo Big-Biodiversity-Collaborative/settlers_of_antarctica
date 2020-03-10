@@ -200,6 +200,9 @@ test = expand.grid(x=seq(min(train[,1]-0.5), max(train[,1]+0.5),
 
 mod_test = knn(train, test = test, cl, k = 7, prob=TRUE)
 
+# Let's plot our outcome. 
+
+source("https://tinyurl.com/r5bgd5h")
 
 ```
 
