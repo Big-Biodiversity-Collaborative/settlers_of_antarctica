@@ -1,0 +1,12 @@
+Assignment 3-2
+
+In this assignment, we're going to further explore the data set on wind turbines 
+that generate a significant portion of the energy for us down here in 
+Antarctica. You can explore the dataset generated from team-turbine at 
+https://tinyurl.com/rhzt35r
+
+For this assignment, generate an R script that: 
+1) Performs two t-tests on the two different variables (wind speed and power output) by turbine maker. 
+2. Briefly in your script, describe what the goal is here (in plain English). Why are we running these tests? 
+3. In your script - describe each part of the output from the t.test: t, df, p-value, 95% confidence interval, sample estimates. What does each mean, and what does it tell us here?
+4. Write a one-sentence summary at the end of your script that describes the overall finding with these tests?

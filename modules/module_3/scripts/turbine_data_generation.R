@@ -18,7 +18,7 @@ complement <- function(y, rho, x) {
   rho * sd(y.perp) * y + y.perp * sd(y) * sqrt(1 - rho^2)
 }
 
-wind_turbines = data.frame(collar_id = seq(1:67),
+wind_turbines = data.frame(turbine_id = seq(1:67),
                      maker = c(rep("Turbines turbines turbines Inc", 47), 
                                rep("Turbo turbines", 20)), 
                      wind_speed = c(rtruncnorm(n = 47, 

@@ -1,0 +1,21 @@
+Assignment 3-1
+
+In this assignment, we're going to explore another data set on wind turbines 
+that generate a significant portion of the energy for us down here in 
+Antarctica. You can explore the dataset generated from team-turbine at 
+https://tinyurl.com/rhzt35r
+
+Your assignment with these data is the following:
+1. Create an R script using coding best practices discussed in class
+2. Load in the data and do a quick quality control check - answer the following
+questions: 1) How many turbine makers are there? 2) what do you think each 
+column of data represents? 
+3. Generate a summary of the data set that calculates the mean wind speed, mean 
+power, maximum power and power variance for each turbine maker. Answer the 
+following question: Which turbine maker has a higher average power output?
+4. Generate a boxplot using ggplot syntax that compares the windspeed between 
+different turbine makers. The plot should 1) be appropriately labeled, 2) show 
+raw data points in addition to the boxes (look at the geom_jitter() function).
+5. What do all of the different components of a box-plot represent (Google this
+). Give a concise 4-5 sentence summary where you break down each piece and what
+ it represents. 
