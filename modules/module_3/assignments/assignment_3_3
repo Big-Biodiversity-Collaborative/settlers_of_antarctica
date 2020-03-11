@@ -1,0 +1,14 @@
+Assignment 3_3
+
+We're going to continue to work with the wind-turbine data set for this last assignment for module 3. We'll be building a k-nn classification algorithm that
+determines what turbine maker an individual turbine belongs to depending on the two variables we have in the data set (average wind speed recorded and poweroutput). The data can be accessed here: https://tinyurl.com/rhzt35r
+
+Create an R Script that does in the following:
+1. Follows good coding practices and documentation
+2. Loads in the nor (normalizing function we built in class)
+3. Divides the data into the training data frame and classes vector similar to how we built these in class
+4. Builds a grid of test data using the method we learned in class.
+5. Builds a knn model using the knn() function from the class package combining the components above, using 5 nearest neighbors. 
+6. At the bottom of your script, answer the following questions about the two figures presented here:
+  a. Can you succinctly describe what the two figures are illustrating? Imagine you had to explain it someone who hasn't taken the course before. 
+  b. What do you think the main difference between the two figures is?

@@ -38,8 +38,8 @@ test = expand.grid(x=seq(min(train[,1]-0.5), max(train[,1]+0.5),
                          by=0.1))
 
 mod = knn(train = train, test = test, cl = cl, k = 5, prob = TRUE)
-
-
+mod2 = knn(train = train, test = test, cl = cl, k = 9, prob = TRUE)
+mod3 = knn(train = train, test = test, cl = cl, k = 3, prob = TRUE)
 
 
 
@@ -111,3 +111,5 @@ knn_plot = function(data, model){
 
 
 knn_plot(wind_turbines, model = mod)
+knn_plot(wind_turbines, model = mod2)
+knn_plot(wind_turbines, model = mod3)

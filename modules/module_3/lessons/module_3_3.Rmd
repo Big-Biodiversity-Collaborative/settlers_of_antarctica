@@ -1,238 +1,115 @@
 ---
-title: "Joins and k-nn"
+title: "module_3_2"
 author: "Keaton Wilson"
-date: "2/28/2020"
-output: html_document
+date: "2/12/2020"
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## The Context  
-We're running short on tracking collars for leopard seals after pulling all of 
-the collars from Budget Collars (they seem to be failing more often, and their 
-battery life is terrible - putting our fish-harvesting team in danger).  
+## Plotting and Means Comparisons  
+Last class, we examined the collars data set, read a bit about the grammar of 
+graphics and analyzed some code for a ggplot of some of the data we've been 
+working with.  
 
-One of our intrepid data science team members found an old box of collars and 
-some data on all of the collars (it was a real challenge getting this data 
-off of an old floppy drive, but she managed). So we're going to spend the next
-lessons tackling two tasks: first, we're to work to join data sets together. 
-The main goal here is to create a single data set that includes the data 
-we have previously looked at for collars, the data on the new collars, as well 
-as the additional data on the old collars.  
+Let's take a stab at making our ggplot from scratch.  
 
-This is tricky, as we we cant just do simple rbinds and cbinds like we've done
-in the paste - the collar IDs need to be matched up with their counterparts 
-across datasets, and new collars need be added, but with the column that 
-contains maker ID missing.   
-
-Second, we'll dive into some machine learning. We'll talk a bit about what 
-machine learning is (and isn't) and then use a frequently used classification 
-algorithm, k-nearnest neighbors to predict which maker made which of our 
-unidentified collars.  
-
-## Joins  
-Being able to join together data from related tables is a key skill in data 
-science, and for working with larger data structures (databases with their 
-own languages, like SQL).  
-
-## Group Discussion - Joins in R
-Take 5 minutes to read through this [article](https://medium.com/@HollyEmblem/joining-data-with-dplyr-in-r-874698eb8898) 
-individually. https://tinyurl.com/rfmnvcs
-
-After this 5 minutes, discuss the questions below with your group. We'll then 
-discuss them as a class. Make sure that someone in the group (a reporter) can 
-report out answers to each of the questions below.  
-
-1. What's the difference between a left join and an inner join?  
-2. Can you think of a reason you would use an anti-join?  
-3. What type of join should we use to bind the three tables we're working on 
-with our seal collar data?  
-4. Can you draw a daigram that illustrates what a left-join does?  
-
-
-# Working through our data  
-Let's load in the data we're working with and work through implementing 
-our joins.  
+In your groups, work together to develop code that utilizes the collars data
+[https://tinyurl.com/sp7b25x](https://tinyurl.com/sp7b25x) and plots:  
+1. Two histograms one for battery life and one for signal length  
+2. Color coded for each manufacturer  
+3. Correct and appropriate labels  
+4. A vertical line that plots the median of each group (this is trickier - 
+remember to use the google)  
 
 ```{r}
 library(tidyverse)
-
-#loading in the data
 collars = read_csv("https://tinyurl.com/sp7b25x")
-new_collars = read_csv("https://tinyurl.com/t3of8rk")
-old_collars_new_data = read_csv("https://tinyurl.com/ufawycq")
+
+collars %>%
+  ggplot(aes(x=battery_life, fill = maker)) +
+  geom_histogram(alpha = 0.6, bins = 20) +
+  geom_vline(data = collars %>%
+               group_by(maker) %>%
+               summarize(median_battery = median(battery_life)), 
+             aes(xintercept = median_battery, col = maker)) +
+  ylab("Count") +
+  xlab("Battery Life") +
+  scale_color_discrete(name = "Maker") +
+  scale_fill_discrete(name = "Maker") +
+  theme_classic()
+
+collars %>%
+  ggplot(aes(x=signal_distance, fill = maker)) +
+  geom_histogram(alpha = 0.6, bins = 20) +
+  geom_vline(data = collars %>%
+               group_by(maker) %>%
+               summarize(median_signal = median(signal_distance)), 
+             aes(xintercept = median_signal, col = maker)) +
+  ylab("Count") +
+  xlab("Signal Distance") +
+  scale_color_discrete(name = "Maker") +
+  scale_fill_discrete(name = "Maker") +
+  theme_classic()
 
 
-#explore 
-glimpse(collars)
-glimpse(new_collars)
-glimpse(old_collars_new_data)
-
-# Tell me about these data, how are we going to join them?
 ```
+**What is another way to plot these data?**  
 
-### Step 1. The join
+## Stepping back and thinking about the problem  
+Ok, so stepping back - what is the fundamental question we're asking here?  
+
+Pose this to the class.  
+
+**Fundamentally, we want to know if there a difference between the two 
+manufacturers in these two variables - battery life and signal distance**  
+
+They look different in the graphs you made, but is this enough? What do I mean?  
+
+Draw three different histograms on the board.  
+![histogram comparison](../assets/histogram_example.pdf)
+
+How do we tell whether there is an **actual** or **meaningful** difference in 
+the means?  
+
+## Introduction to a t-test  
+There is a formalized set of statistical tools to answer this question. 
+Some of you may have heard of t-tests before - which is what we use on this 
+type of data.  
+
+Let's briefly talk through the logic here.  
+1. Our data are a sample of a larger population (think about all of the collars
+ever produced for both companies).  
+2. What we're really interested in is the the difference in the means between 
+the two groups. If they're the same, this difference is 0. If they're different, 
+the difference is something larger or smaller than 0.  
+3. the code is simple, but the output is a bit trickier:  
 
 ```{r}
-old_collars_full_data = collars %>% left_join(old_collars_new_data, 
-                                              by = c("collar_id", "maker"))
+t.test(battery_life ~ maker, data = collars)
 
 ```
+4. Breaking down the information here:  
+  a. *t*: is the test statistic - here, it's a metric of how different the 
+  difference of the two means is from 0. High (or low) values indicate a big 
+  difference, small values are closer to 0.  
+  b. *df*: is degrees of freedom - it's a measure of your sample size and some 
+  other stuff - not something we're really going to focus on here.  
+  c. *p-value*: a measure of certaintanty of the difference outlined in the 
+  *t-statistic* above, it is veryyyyyy small. This means that there is an 
+  extremely low probability that obtaining a difference in means of 0 is very,
+  very unlikely. There are a lot of benchmarks in different fields for what this
+  value should be below to consider the difference *significant*, typically 
+  < 0.05 is considered significant.  
+  d. *95 percent condience interval*: this is the range that we can expect the 
+  test statistic (difference in means) to fall in 95% of the time given the data.  
+
+## Exploring a t-test on your own
+Work on your own (but feel free to consult your group) to run a t-test on the 
+other variable we are interested in (signal distance). Be able to describe each 
+piece of the output, what it means, and the overall finding for the test. 
+Also be able to relate it back to the figures we generated above. 
 
 
-### Step 2. a bind or a join? 
-So now we need to put the new collars in here...
-
-How do we join this? Is it even a join at all?
-
-```{r}
-full = bind_rows(old_collars_full_data, new_collars)
-```
-
-
-## Prediction, Machine Learning  
-Now, we're going to work through an example of machine learning, which is 
-used in a variety of ways in data science - and across industries and 
-discplines.  
-
-The goal here is that we have ~ 50 unlabeled collars, and we want to be able to 
-predict who made them. Remember that Budget Collars LLC provided us with collars 
-that are failing, which is a risk to human life! So we need to throw out any 
-collars that we think were made by this company, and only incorporate new 
-collars from our unlabeled batch that we think were made by Collarium Inc. 
-
-### What is machine learning? Group reading and discussion.  
-Take 10 minutes to read [this article](https://medium.com/@randylaosat/a-beginners-guide-to-machine-learning-dfadc19f6caf). 
-
-I'll signal when 10 minutes is up. Get into your groups and discuss the following
-questions.  
-1. What is machine learning? Is it different than AI?  
-2. What types of general problems do machine learning techniques tackle?  
-3. Given what you've read, what kind algorithm type might we employ for our 
-problem?  
-
-## knn in R
-K-nearest neighbors is a classification algorithm (e.g. it attempts to predict 
-labels that are classes in R). We're going to work through a small example on 
-our data set before attempting to build the full model. 
-
-### Check-in  
-What are our classes/labels here?  
-
-### Data cleaning and prepping, splitting and normalizing
-
-First, we need to process our data a bit before we jump into our algorithm.  
-
-```{r}
-# remind ourselves of what full contains
-glimpse(full)
-
-
-# First, we want to filter out the missing data - we'll run our full algorithm 
-# on this later. 
-
-full_filtered = full %>%
-  filter(!is.na(maker))
-
-collars_to_label = full %>%
-  filter(is.na(maker))
-
-
-# Next, let's get rid of some unneeded columns
-filtered = full_filtered %>%
-  select(-collar_id, -fail,-antenna_length, -weight) %>% 
-  mutate(maker = as.factor(maker))
-```
-
-### Check-in  
-Why are we doing this? We're keeping it to two variables here... later on we'll
-do more!  
-
-On to normalization.  
-```{r}
-
-# custom function for normalizing
-nor <-function(x){
-  (x -min(x))/(max(x)-min(x))
-}
-
-knn_data = filtered %>%
-  mutate(battery_life_norm = nor(filtered$battery_life),
-         signal_distance_norm = nor(filtered$signal_distance)) %>%
-  select(-battery_life, -signal_distance)
-
-```
-
-### Check-in  
-Why are we doing this? Can you think of a good reason why we have to normalize 
-the values here? What does normalize mean?  
-
-### We have data that we're ready to put into our algorithm - but first we need 
-to figure out how the algorithm actually works. 
-
-We're going to watch a brief video: https://www.youtube.com/watch?v=MDniRwXizWo
-
-After we're finished, get into your groups and discuss the following points:  
-1. For our small, filtered data set with two variables, how would you draw a 
-simple diagram like in the video that demonstrates how k-nn is working?  
-2. Can you envision how this would work/what it would look like with more than 
-two variables?  
-3. What would happen if you increase or decrease K in the GoT example above, 
-or generally?  
-
-## Let's try our hand at k-nn
-
-```{r}
-#loading package to do knn
-#install.packages('class')
-library(class)
-
-#splitting the data up 
-train = as.data.frame(knn_data[,-1])
-cl = knn_data[,1] %>% pull()
-
-test = expand.grid(x=seq(min(train[,1]-0.5), max(train[,1]+0.5),
-                            by=0.1),
-                      y=seq(min(train[,2]-0.5), max(train[,2]+0.5), 
-                            by=0.1))
-
-mod_test = knn(train, test = test, cl, k = 7, prob=TRUE)
-
-# Let's plot our outcome. 
-
-# We're going to use a complicated plotting function I built to inpsect things
-# You don't need to understand the guts of this....
-source("https://tinyurl.com/r5bgd5h")
-
-knn_plot(knn_data, mod = mod_test)
-
-```
-
-### Group discussion 
-Can you interpret this plot? Focus on a few points:  
-1. What are the gridded points?  
-2. What do the large points represent?  
-3. What are the lines here? 
-
-
-### Final steps - making predictions  
-So we've gotten to a point where we have a model we think is good (let's go 
-with k = 5). Let's use it on the test data we want to predict labels for!  
-
-```{r}
-glimpse(collars_to_label)
-
-# Getting ready to feed data in
-collars_to_label_norm = collars_to_label %>%
-  dplyr::select(battery_life, signal_distance) %>%
-  mutate(battery_life_norm = nor(battery_life), 
-         signal_distance_norm = nor(signal_distance)) %>%
-  dplyr::select(battery_life_norm, signal_distance_norm)
-
-mod = knn(train = train, test = collars_to_label_norm, cl = cl, k = 5)
-
-collars_to_label %>%
-  mutate(pred_class = mod)
-```

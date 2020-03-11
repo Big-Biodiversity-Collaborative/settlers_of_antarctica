@@ -1,0 +1,238 @@
+---
+title: "Joins and k-nn"
+author: "Keaton Wilson"
+date: "2/28/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The Context  
+We're running short on tracking collars for leopard seals after pulling all of 
+the collars from Budget Collars (they seem to be failing more often, and their 
+battery life is terrible - putting our fish-harvesting team in danger).  
+
+One of our intrepid data science team members found an old box of collars and 
+some data on all of the collars (it was a real challenge getting this data 
+off of an old floppy drive, but she managed). So we're going to spend the next
+lessons tackling two tasks: first, we're to work to join data sets together. 
+The main goal here is to create a single data set that includes the data 
+we have previously looked at for collars, the data on the new collars, as well 
+as the additional data on the old collars.  
+
+This is tricky, as we we cant just do simple rbinds and cbinds like we've done
+in the paste - the collar IDs need to be matched up with their counterparts 
+across datasets, and new collars need be added, but with the column that 
+contains maker ID missing.   
+
+Second, we'll dive into some machine learning. We'll talk a bit about what 
+machine learning is (and isn't) and then use a frequently used classification 
+algorithm, k-nearnest neighbors to predict which maker made which of our 
+unidentified collars.  
+
+## Joins  
+Being able to join together data from related tables is a key skill in data 
+science, and for working with larger data structures (databases with their 
+own languages, like SQL).  
+
+## Group Discussion - Joins in R
+Take 5 minutes to read through this [article](https://medium.com/@HollyEmblem/joining-data-with-dplyr-in-r-874698eb8898) 
+individually. https://tinyurl.com/rfmnvcs
+
+After this 5 minutes, discuss the questions below with your group. We'll then 
+discuss them as a class. Make sure that someone in the group (a reporter) can 
+report out answers to each of the questions below.  
+
+1. What's the difference between a left join and an inner join?  
+2. Can you think of a reason you would use an anti-join?  
+3. What type of join should we use to bind the three tables we're working on 
+with our seal collar data?  
+4. Can you draw a daigram that illustrates what a left-join does?  
+
+
+# Working through our data  
+Let's load in the data we're working with and work through implementing 
+our joins.  
+
+```{r}
+library(tidyverse)
+
+#loading in the data
+collars = read_csv("https://tinyurl.com/sp7b25x")
+new_collars = read_csv("https://tinyurl.com/t3of8rk")
+old_collars_new_data = read_csv("https://tinyurl.com/ufawycq")
+
+
+#explore 
+glimpse(collars)
+glimpse(new_collars)
+glimpse(old_collars_new_data)
+
+# Tell me about these data, how are we going to join them?
+```
+
+### Step 1. The join
+
+```{r}
+old_collars_full_data = collars %>% left_join(old_collars_new_data, 
+                                              by = c("collar_id", "maker"))
+
+```
+
+
+### Step 2. a bind or a join? 
+So now we need to put the new collars in here...
+
+How do we join this? Is it even a join at all?
+
+```{r}
+full = bind_rows(old_collars_full_data, new_collars)
+```
+
+
+## Prediction, Machine Learning  
+Now, we're going to work through an example of machine learning, which is 
+used in a variety of ways in data science - and across industries and 
+discplines.  
+
+The goal here is that we have ~ 50 unlabeled collars, and we want to be able to 
+predict who made them. Remember that Budget Collars LLC provided us with collars 
+that are failing, which is a risk to human life! So we need to throw out any 
+collars that we think were made by this company, and only incorporate new 
+collars from our unlabeled batch that we think were made by Collarium Inc. 
+
+### What is machine learning? Group reading and discussion.  
+Take 10 minutes to read [this article](https://medium.com/@randylaosat/a-beginners-guide-to-machine-learning-dfadc19f6caf). 
+
+I'll signal when 10 minutes is up. Get into your groups and discuss the following
+questions.  
+1. What is machine learning? Is it different than AI?  
+2. What types of general problems do machine learning techniques tackle?  
+3. Given what you've read, what kind algorithm type might we employ for our 
+problem?  
+
+## knn in R
+K-nearest neighbors is a classification algorithm (e.g. it attempts to predict 
+labels that are classes in R). We're going to work through a small example on 
+our data set before attempting to build the full model. 
+
+### Check-in  
+What are our classes/labels here?  
+
+### Data cleaning and prepping, splitting and normalizing
+
+First, we need to process our data a bit before we jump into our algorithm.  
+
+```{r}
+# remind ourselves of what full contains
+glimpse(full)
+
+
+# First, we want to filter out the missing data - we'll run our full algorithm 
+# on this later. 
+
+full_filtered = full %>%
+  filter(!is.na(maker))
+
+collars_to_label = full %>%
+  filter(is.na(maker))
+
+
+# Next, let's get rid of some unneeded columns
+filtered = full_filtered %>%
+  select(-collar_id, -fail,-antenna_length, -weight) %>% 
+  mutate(maker = as.factor(maker))
+```
+
+### Check-in  
+Why are we doing this? We're keeping it to two variables here... later on we'll
+do more!  
+
+On to normalization.  
+```{r}
+
+# custom function for normalizing
+nor <-function(x){
+  (x -min(x))/(max(x)-min(x))
+}
+
+knn_data = filtered %>%
+  mutate(battery_life_norm = nor(filtered$battery_life),
+         signal_distance_norm = nor(filtered$signal_distance)) %>%
+  select(-battery_life, -signal_distance)
+
+```
+
+### Check-in  
+Why are we doing this? Can you think of a good reason why we have to normalize 
+the values here? What does normalize mean?  
+
+### We have data that we're ready to put into our algorithm - but first we need 
+to figure out how the algorithm actually works. 
+
+We're going to watch a brief video: https://www.youtube.com/watch?v=MDniRwXizWo
+
+After we're finished, get into your groups and discuss the following points:  
+1. For our small, filtered data set with two variables, how would you draw a 
+simple diagram like in the video that demonstrates how k-nn is working?  
+2. Can you envision how this would work/what it would look like with more than 
+two variables?  
+3. What would happen if you increase or decrease K in the GoT example above, 
+or generally?  
+
+## Let's try our hand at k-nn
+
+```{r}
+#loading package to do knn
+#install.packages('class')
+library(class)
+
+#splitting the data up 
+train = as.data.frame(knn_data[,-1])
+cl = knn_data[,1] %>% pull()
+
+test = expand.grid(x=seq(min(train[,1]-0.5), max(train[,1]+0.5),
+                            by=0.1),
+                      y=seq(min(train[,2]-0.5), max(train[,2]+0.5), 
+                            by=0.1))
+
+mod_test = knn(train, test = test, cl, k = 7, prob=TRUE)
+
+# Let's plot our outcome. 
+
+# We're going to use a complicated plotting function I built to inpsect things
+# You don't need to understand the guts of this....
+source("https://tinyurl.com/r5bgd5h")
+
+knn_plot(knn_data, mod = mod_test)
+
+```
+
+### Group discussion 
+Can you interpret this plot? Focus on a few points:  
+1. What are the gridded points?  
+2. What do the large points represent?  
+3. What are the lines here? 
+
+
+### Final steps - making predictions  
+So we've gotten to a point where we have a model we think is good (let's go 
+with k = 5). Let's use it on the test data we want to predict labels for!  
+
+```{r}
+glimpse(collars_to_label)
+
+# Getting ready to feed data in
+collars_to_label_norm = collars_to_label %>%
+  dplyr::select(battery_life, signal_distance) %>%
+  mutate(battery_life_norm = nor(battery_life), 
+         signal_distance_norm = nor(signal_distance)) %>%
+  dplyr::select(battery_life_norm, signal_distance_norm)
+
+mod = knn(train = train, test = collars_to_label_norm, cl = cl, k = 5)
+
+collars_to_label %>%
+  mutate(pred_class = mod)
+```
