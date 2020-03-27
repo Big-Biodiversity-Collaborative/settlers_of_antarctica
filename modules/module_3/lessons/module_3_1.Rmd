@@ -93,7 +93,7 @@ part of the tidyverse and its from a package called ggplot2.
 Instead of explaining the syntax to you, we're going to do an in-class reading 
 assignment.  
 
-[Article to read](https://cfss.uchicago.edu/notes/grammar-of-graphics/)  
+[Article to read](https://towardsdatascience.com/a-comprehensive-guide-to-the-grammar-of-graphics-for-effective-visualization-of-multi-dimensional-1f92b4ed4149)  
 
 Spend 10 minutes reading the article above (take notes!). When the time is up, 
 I'll signal you to get into your groups and discuss the article. There is a lot 

@@ -1,0 +1,177 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={module\_3\_2 - Visualization Exercise},
+            pdfauthor={Keaton Wilson},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{module\_3\_2 - Visualization Exercise}
+\author{Keaton Wilson}
+\date{3/11/2020}
+
+\begin{document}
+\maketitle
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\hypertarget{part-1---a-visualization-primer---45-minutes}{%
+\subsection{Part 1 - A Visualization Primer - (45
+minutes)}\label{part-1---a-visualization-primer---45-minutes}}
+
+Some inspiring figures:\\
+\url{http://www.r-graph-gallery.com/19-map-leafletr/}~\\
+\url{http://www.r-graph-gallery.com/21-distribution-plot-using-ggplot2}~\\
+\url{http://www.r-graph-gallery.com/274-map-a-variable-to-ggplot2-scatterplot/}~\\
+\url{http://www.r-graph-gallery.com/123-circular-plot-circlize-package-2/}
+
+\hypertarget{a.-why-do-visualizations-matter---small-group-activity}{%
+\subsubsection{1a. Why do visualizations matter? - Small Group
+Activity}\label{a.-why-do-visualizations-matter---small-group-activity}}
+
+\begin{itemize}
+\tightlist
+\item
+  Take 3 minutes individuals - write down your top 10 reasons why data
+  visualization is important or useful to you?
+\item
+  Take 5 minutes with your group - compare your notes, come to a group
+  consensus - rank the top 5 reasons from the group.
+\item
+  Have your \emph{Presenter} write the group's reasons on the board, and
+  we'll spend some time discussing.
+\end{itemize}
+
+\hypertarget{b.-types-of-visualization---big-thinking-about-data}{%
+\subsubsection{1b. Types of visualization - big thinking about
+data}\label{b.-types-of-visualization---big-thinking-about-data}}
+
+\hypertarget{b.1-small-group-activity}{%
+\paragraph{1b.1 Small group activity}\label{b.1-small-group-activity}}
+
+Within your group - what are all of the types of visualization you can
+think of. The Conceptor will draw them initially, then I'll draw them on
+the board during a speak out.
+
+\hypertarget{b.2-activity---matching-data-types-to-visualization-types}{%
+\paragraph{1b.2 Activity - matching data types to visualization
+types}\label{b.2-activity---matching-data-types-to-visualization-types}}
+
+Matching activity in group - can you match the visualization to the data
+type.
+
+File for activity is in the images folder.
+
+\hypertarget{c-figure-critique---what-makes-a-good-data-visualization}{%
+\subsubsection{1c Figure Critique - What makes a good data
+visualization?}\label{c-figure-critique---what-makes-a-good-data-visualization}}
+
+\begin{itemize}
+\tightlist
+\item
+  Small mini-lecture on principles of data visualization and design.
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Some resources to build this:
+  \end{enumerate}
+
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi}.}
+  \tightlist
+  \item
+    \url{https://www.fusioncharts.com/whitepapers/downloads/Principles-of-Data-Visualization.pdf}
+  \item
+    \url{https://moz.com/blog/data-visualization-principles-lessons-from-tufte}
+  \item
+    \url{http://stat.pugetsound.edu/courses/class13/dataVisualization.pdf}
+  \item
+    \url{http://paldhous.github.io/ucb/2016/dataviz/week2.html}
+  \end{enumerate}
+\end{itemize}
+
+Figures:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \includegraphics{https://raw.githubusercontent.com/keatonwilson/biostats/master/Images/3d-column-chart-of-awesome.png}
+\item
+  \includegraphics{https://raw.githubusercontent.com/keatonwilson/biostats/master/Images/Bling_fig3.jpg}
+\item
+  \includegraphics{https://raw.githubusercontent.com/keatonwilson/biostats/master/Images/cawley_fig1.jpg}
+\item
+  \includegraphics{https://raw.githubusercontent.com/keatonwilson/biostats/master/Images/roeder_fig4.jpg}
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Students will examine and critique figures from primary literature in
+  their groups. Each group will be passed a figure, students will take
+  10 minutes to try to interpret the figure, and generate a list of
+  problems. Each group will also draw and present a reimagined version
+  of the figure that is better.
+\end{itemize}
+
+\end{document}
