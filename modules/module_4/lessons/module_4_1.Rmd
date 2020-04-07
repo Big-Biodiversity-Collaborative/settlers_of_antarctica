@@ -1,0 +1,93 @@
+---
+title: "Module 4_1"
+author: "Keaton Wilson"
+date: "4/1/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## A new road - bypass the penguins please  
+The overarching goal of this study builds on the last. We're looking at 
+constructing a new road that gives the fishing team access to some new sites 
+that seem to be relatively leopard-seal free. However, the road crosses through
+some Gentoo penguin nesting grounds. We have data on a lot of different sites, 
+and want to pick a route that minimizes the impact to the penguins (e.g. 
+we want to pick sites that currently have low nesting success).  
+
+We're going to examine our first data set of the module: 
+https://tinyurl.com/w9tol83  
+
+Let's explore this data set before moving on to the focus of this lesson.  
+Load in the data and use the tools we've learned to explore the data. Answer 
+the following questions:  
+1. What does each column represent  
+2. What questions do you have about the data?  
+
+```{r}
+library(tidyverse)
+
+penguins = read_csv("https://tinyurl.com/w9tol83")
+
+head(penguins)
+glimpse(penguins)
+
+```
+
+## Bootstrapping  
+What would be nice is to have the average number of grass tussocks for each 
+site. We can do this with the group_by and summarize tools we've been working 
+all semester.  
+
+```{r}
+penguins %>%
+  group_by(site) %>%
+  summarize(avg_tussocks = mean(avg_tussocks), 
+            n = n())
+
+```
+
+One big question though - how confident are we that these means represent the 
+actual mean for a given site? E.g. we didn't sample every square meter of all 
+of these sites. We took a **sample**, and we assume that the mean here is a 
+good approximation of the actual mean. We can use confidence intervals to give 
+us a little more information about the spread of this value and how confident 
+we are. 
+
+**Check in and ask about where we have used confidence intervals before**  
+
+## By the bootstraps  
+
+
+
+
+
+
+## Building a loop to do bootstrapping for us  
+Let's build some code to run a bootstrap for the overall mean number of 
+tussocks across all sites 
+
+```{r}
+# length vector
+n = length(penguins$avg_tussocks)
+# number of bootstraps
+B = 1000
+# Making an empty vector to pipe values into
+result = rep(NA, B)
+
+# looping
+for (i in 1:B){
+  boot.sample = sample(n, replace = TRUE)
+  result[i] = (penguins$avg_tussocks[boot.sample])
+}
+# calculating upper and lower bounds
+lower = mean(penguins$avg_tussocks) + (-1*2*sd(result))
+upper = mean(penguins$avg_tussocks) + (1*2*sd(result))
+CI = c(lower, upper)
+
+print(CI)
+```
+
+

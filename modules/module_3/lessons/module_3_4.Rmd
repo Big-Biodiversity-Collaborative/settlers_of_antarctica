@@ -2,7 +2,9 @@
 title: "Joins and k-nn"
 author: "Keaton Wilson"
 date: "2/28/2020"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -104,7 +106,7 @@ collars that we think were made by this company, and only incorporate new
 collars from our unlabeled batch that we think were made by Collarium Inc. 
 
 ### What is machine learning? Group reading and discussion.  
-Take 10 minutes to read [this article](https://medium.com/@randylaosat/a-beginners-guide-to-machine-learning-dfadc19f6caf). 
+Take 10 minutes to read ![this article](https://medium.com/@randylaosat/a-beginners-guide-to-machine-learning-dfadc19f6caf). 
 
 I'll signal when 10 minutes is up. Get into your groups and discuss the following
 questions.  
