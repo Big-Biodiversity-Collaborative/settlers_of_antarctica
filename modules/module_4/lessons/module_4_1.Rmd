@@ -60,17 +60,29 @@ we are.
 
 ## By the bootstraps  
 
+Bootstrapping is inherently about resampling without replacement. We take a 
+small data set (all data sets are small, right?) that we assume is 
+representative of a population of samples, and draw out samples with 
+replacement, calculate some statistic (a mean, here), and do it over again. 
+Many, many times. 
 
+We can use these samples to create a confidence interval of the statistic 
+(the mean), or even a comparison of means like a t-test.  
 
-
-
+### Video explanation  
+let's take ~10 minutes to watch the following video: [https://www.youtube.com/watch?v=-YgeLJRZQYY](https://www.youtube.com/watch?v=-YgeLJRZQYY).  
+After we've finished, get into your groups and discuss the following 
+questions (and designate a reported to report out to the class):  
+1. What is the utility of bootstrapping many many times (> 10k)?  
+2. Why do we sample with replacement?  
+3. How might we apply this to our data if we wanted to construct means (and confidence intervals) for each site?  
 
 ## Building a loop to do bootstrapping for us  
 Let's build some code to run a bootstrap for the overall mean number of 
 tussocks across all sites 
 
 ```{r}
-# length vector
+# length vector - how many samples do we have?
 n = length(penguins$avg_tussocks)
 # number of bootstraps
 B = 1000
@@ -80,7 +92,7 @@ result = rep(NA, B)
 # looping
 for (i in 1:B){
   boot.sample = sample(n, replace = TRUE)
-  result[i] = (penguins$avg_tussocks[boot.sample])
+  result[i] = mean(penguins$avg_tussocks[boot.sample])
 }
 # calculating upper and lower bounds
 lower = mean(penguins$avg_tussocks) + (-1*2*sd(result))
@@ -89,5 +101,40 @@ CI = c(lower, upper)
 
 print(CI)
 ```
+
+
+## Group challenge Every site! Expanding the bootstrap  
+Take the code above and modify/expand it to get a series of means and confidence intervals for each site. Hint: think about turning it into a function!
+
+```{r}
+sites = unique(penguins$site)
+summaries = list()
+for(i in 1:length(sites)){
+  df_tmp = penguins %>% filter(site == sites[[i]])
+  # length vector - how many samples do we have?
+  n = length(df_tmp$avg_tussocks)
+  # number of bootstraps
+  B = 1000
+  # Making an empty vector to pipe values into
+  result = rep(NA, B)
+  
+  # looping
+  for (j in 1:B){
+    boot.sample = sample(n, replace = TRUE)
+    result[j] = mean(df_tmp$avg_tussocks[boot.sample])
+  }
+  # calculating upper and lower bounds
+  lower = mean(df_tmp$avg_tussocks) + (-1*2*sd(result))
+  upper = mean(df_tmp$avg_tussocks) + (1*2*sd(result))
+  summary = data.frame(name = sites[i], 
+                       mean = mean(df_tmp$avg_tussocks), 
+                       lower = lower, 
+                       upper = upper)
+  summaries[[i]] = summary
+}
+
+summary_df = bind_rows(summaries)
+```
+
 
 

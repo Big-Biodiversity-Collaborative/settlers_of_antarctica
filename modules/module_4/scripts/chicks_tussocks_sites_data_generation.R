@@ -46,5 +46,6 @@ plot(x1, y1_with_var)
 points(x2, y2_with_var, pch = 16, col = "black")
 
 site_changes$num_nests = c(y1_with_var, y2_with_var)
+site_changes$num_nests = round(site_changes$num_nests)
 
 write_csv(site_changes, path = "./modules/module_4/data/site_changes.csv")
