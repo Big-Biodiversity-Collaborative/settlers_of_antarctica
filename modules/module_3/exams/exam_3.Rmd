@@ -57,13 +57,15 @@ You have a dataframe called seal_data that contains 5 columns:
 5. Location captured (a general location for where each seal was captured and 
 measurements were taken) - loc  
 
+You're interested in two things: 1) finding the average weight of male and 
+female seals from each location (don't separate by sex here), and 2) determining whether or not there is a significant difference in testosterone between male 
+and female seals across all locations. 
+
 ### Question 4
-Write code using tidyverse/dplyr syntax that computes a summary of the 
-dataframe that includes an average weight and testosterone level for each seal
-over the course of the year and the standard deviation of weight and 
-testosterone level for each seal. Account for the fact that there is some 
+Using the same hypothetical data set, write code using tidyverse/dplyr syntax that computes a summary of the dataframe that includes an average weight and testosterone level for each seal over the course of the year and the standard deviation of weight and testosterone level for each seal. Account for the fact that there is some 
 missing data in the weight and testosterone columns (some seals escaped capture 
 and researchers were unable to get this information).  
+
 ```{r, eval=FALSE}
 seal_data %>%
   group_by(seal_id) %>%
@@ -103,7 +105,7 @@ e. inner-join
 Briefly (3-5 sentences) explain the difference between a classification problem 
 (like the one we tackled in class using k-nn) and a regression problem (feel 
 free to use the web and note that this exam is open book, open note, open 
-everything!)
+everything!). Cite your sources appropriately if you use them!
 
 
 
