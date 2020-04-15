@@ -136,5 +136,17 @@ for(i in 1:length(sites)){
 summary_df = bind_rows(summaries)
 ```
 
+## Visualizing these data  
+Let's finish this mini-project by plotting the means and bounds of our confidence intervals so visualize the set of differences among all the sites.   
+```{r}
+summary_df %>%
+  ggplot(aes(y = mean, x = as.factor(name), group = as.factor(name))) +
+  geom_point() +
+  geom_point(aes(y = lower), color = "blue")
+
+
+```
+
+
 
 

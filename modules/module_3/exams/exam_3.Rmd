@@ -2,7 +2,9 @@
 title: "Exam 3"
 author: "Keaton Wilson"
 date: "3/11/2020"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -66,7 +68,7 @@ Using the same hypothetical data set, write code using tidyverse/dplyr syntax th
 missing data in the weight and testosterone columns (some seals escaped capture 
 and researchers were unable to get this information).  
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, echo=FALSE}
 seal_data %>%
   group_by(seal_id) %>%
   summarize(avg_weight = mean(weight, na.rm = TRUE), 
@@ -134,7 +136,7 @@ You ran a t-test to compare the means of testosterone levels between the two
 groups and were presented with the output below. How would you interpret the 
 output of this test and communicate your findings to others?
 
-```{r}
+```{r, echo=FALSE}
 data = data.frame(seal_id = seq(1:433), 
                   location = c(rep("Western Reach", 288), 
                                rep("Lost Cove", 433-288)), 
