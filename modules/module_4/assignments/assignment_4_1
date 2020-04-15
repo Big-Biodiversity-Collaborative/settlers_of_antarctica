@@ -1,0 +1,14 @@
+Assignment 4-1
+
+Use the same dataset on penguine nesting sites (https://tinyurl.com/w9tol83) to 
+build a script that accomplishes the following tasks:
+1. Follows best practices for formatting and commenting that we've worked on 
+throughout the semester
+2. Loads in the penguin nesting data we've been working with in class
+3. Answer the following questions: 1) How many individual 
+penguin chicks are present in the data (this isn't neccesarily the number of 
+rows in the data set - some chicks may be counted twice). Think about combining 
+the length() and unique() functions. 
+4. Using the dplyr tools we've developed, generate a summary data set that 
+shows the mean distance to open water and the number of samples for each site. 
+5. 

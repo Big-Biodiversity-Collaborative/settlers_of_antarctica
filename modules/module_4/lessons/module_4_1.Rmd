@@ -104,7 +104,7 @@ print(CI)
 
 
 ## Group challenge Every site! Expanding the bootstrap  
-Take the code above and modify/expand it to get a series of means and confidence intervals for each site. Hint: think about turning it into a function!
+Take the code above and modify/expand it to get a series of means and confidence intervals for each site. Hint: think about nesting one for loop inside of another. 
 
 ```{r}
 sites = unique(penguins$site)
@@ -139,12 +139,18 @@ summary_df = bind_rows(summaries)
 ## Visualizing these data  
 Let's finish this mini-project by plotting the means and bounds of our confidence intervals so visualize the set of differences among all the sites.   
 ```{r}
+
 summary_df %>%
   ggplot(aes(y = mean, x = as.factor(name), group = as.factor(name))) +
-  geom_point() +
-  geom_point(aes(y = lower), color = "blue")
+  geom_point(size = 1) +
+  geom_linerange(aes(ymax = upper, ymin = lower)) +
+  coord_flip()
 
-
+penguins %>%
+  ggplot(aes(x = as.factor(site), y = avg_tussocks, color = as.factor(site))) +
+  geom_boxplot() +
+  coord_flip() +
+  theme(legend.position = "none")
 ```
 
 
