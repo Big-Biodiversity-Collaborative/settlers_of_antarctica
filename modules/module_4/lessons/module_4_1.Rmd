@@ -86,6 +86,12 @@ tussocks across all sites
 n = length(penguins$avg_tussocks)
 # number of bootstraps
 B = 1000
+
+#what confidence interval do we want?
+# here we'll do 95
+# 0.95 = 4/2
+# 0.80 = 2.23/2
+a = 2
 # Making an empty vector to pipe values into
 result = rep(NA, B)
 
@@ -95,8 +101,8 @@ for (i in 1:B){
   result[i] = mean(penguins$avg_tussocks[boot.sample])
 }
 # calculating upper and lower bounds
-lower = mean(penguins$avg_tussocks) + (-1*2*sd(result))
-upper = mean(penguins$avg_tussocks) + (1*2*sd(result))
+lower = mean(penguins$avg_tussocks) + (-1*a*sd(result))
+upper = mean(penguins$avg_tussocks) + (1*a*sd(result))
 CI = c(lower, upper)
 
 print(CI)

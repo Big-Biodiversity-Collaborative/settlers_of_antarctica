@@ -11,4 +11,6 @@ rows in the data set - some chicks may be counted twice). Think about combining
 the length() and unique() functions. 
 4. Using the dplyr tools we've developed, generate a summary data set that 
 shows the mean distance to open water and the number of samples for each site. 
-5. 
+5. Using the code we developed in class - create 80% bootstrap confidence intervals 
+for the average distance to water (remember, you'll need to change the a value
+in the code we used, as well as the variables)
