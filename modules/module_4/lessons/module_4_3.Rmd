@@ -1,0 +1,57 @@
+---
+title: "module_4_3"
+author: "Keaton Wilson"
+date: "4/22/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## More hypothesis testing and Extensions of t-tests and permutation tests (ANOVA)  
+
+Let's start working with a new data set that complements what we've been 
+working with so far. 
+
+### New data  
+```{r}
+library(tidyverse)
+site_data = read_csv("https://tinyurl.com/yardhofj")
+glimpse(site_data)
+site_data
+
+```
+A big one is making comparisons between the 1971 data and 
+the 2011 data. Can you think of some questions we could ask?
+
+### Hypothesis brainstorm  
+Take a few minutes and write down some ideas you have for questions that could 
+be asked and associated hypotheses?
+
+## Focusing on one research question  
+One big question we might ask is whether or not there have been changes in the 
+number of tussocks between the two time periods. Do we have some statistical 
+tools in our toolkit to answer this?  
+
+1. Visualization  
+2. t-test (think about the difference of this dataset though)
+3. Permutation test (think about the difference of this dataset though)
+
+## Group Discussion and Work 
+Spend 10 minutes in your groups putting together one (or more) of these tools 
+that demonstrates an answer. You should be able to explain the output and 
+differences in laymans terms.  
+
+```{r}
+library(tidyverse)
+site_data %>%
+  ggplot(aes(x = tussocks, fill = as.factor(year))) +
+  geom_density(alpha = 0.8) +
+  xlab("Number of Tussocks per Site") +
+  ylab("Density") +
+  scale_fill_discrete(name = "Year") +
+  theme_classic()
+
+
+```
