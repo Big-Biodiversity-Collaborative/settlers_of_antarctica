@@ -1,0 +1,111 @@
+---
+title: "Module 4_4"
+author: "Keaton Wilson"
+date: "4/29/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Bringing it all together - how do multiple factors affect penguin nesting?  
+
+So, we're going to spend the next two classes focusing on what is probably the 
+most used tool in statistics, and address the big question we've been dancing 
+around for most of this module: **what factors predict penguin nesting, and can 
+we build a model that allows to pick out sites that are the least destructive to
+the penguin population if we develop a road there**?  
+
+## Visualizing the problem - Two variables  
+Let's begin by reading in our data and building a plot that explores some 
+of the variables of interest.  
+```{r}
+library(tidyverse)
+
+# importing the data
+site_data = read_csv("https://tinyurl.com/yardhofj")
+glimpse(site_data)
+
+# filtering so we just have the most current data set at our dispsoal
+site_data_2011 = site_data %>% 
+  filter(year == 2011)
+
+# plotting
+ggplot(site_data, aes(x = tussocks, y = num_nests)) +
+  geom_point() +
+  theme_classic()
+
+```
+Ultimately, the goal of linear regression is to be able to draw a line through 
+this cloud of points that best represents the pattern between the number of 
+tussocks and the number of nests. This line represents a simple model of how we 
+think the system works and allows us to make predictions about the number of 
+nests at a given site given we know how many tussocks are at that site.  
+
+How do we choose this line? Let me illustrate the problem.   
+```{r}
+ggplot(site_data, aes(x = tussocks, y = num_nests)) +
+  geom_point() +
+  geom_abline(slope = 0, intercept = 20, color = "blue") +
+  geom_abline(slope = 2.4, intercept = 9, color = "green") +
+  theme_classic()
+```
+
+## Individual Exploration - Least Squares?  
+Spend 10 minutes searching the web. Your goal is to be able to explain how 
+linear regression works. How do we figure out what the best line is? What is 
+this process called, and how would you explain it to someone who has never taken 
+a statistics course before?  
+
+Be ready to report out!  
+
+## Visualizing the regression line  
+So now that we have a basic idea of how this works, let's explore how we 
+can visualize a linear regression and also dive into some nitty gritty about 
+building a model and interpreting what R tells us about the model.  
+
+```{r}
+# do a regular smooth first
+ggplot(site_data, aes(x = tussocks, y = num_nests)) +
+  geom_point() +
+  geom_smooth() +
+  theme_classic()
+
+ggplot(site_data, aes(x = tussocks, y = num_nests)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_classic()
+
+```
+
+# Building a real model and exploring/interpreting  
+
+So the plot above is great, but... it's all happening within ggplot. We can't
+extract any useful information about the regression there. For that, we have to
+use some built-in code to generate a model (think of it as the equivalent of the 
+t.test material we did earlier).  
+
+```{r}
+# specifying our model  
+tussock_mod = lm(num_nests ~ tussocks, data = site_data)
+summary(tussock_mod)
+
+```
+
+## Group discussion and explanation of output  
+Spend 10 minutes in your groups discussing the following questions:  
+1. Can you explain what the following components are and how to interpret them:  
+  a. Estimate for Intercept and tussocks  
+  b. Pr(>|t|)  
+  c. Adjusted R-squared  
+  d. p-value  
+2. What is the overall conclusion about this model?  
+
+This is a big lift! Try and divide and conquer within your groups, and remember 
+that Google is your friend.  
+
+As always - be ready to report out!  
+
+
+  

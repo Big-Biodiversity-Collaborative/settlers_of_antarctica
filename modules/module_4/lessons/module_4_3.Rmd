@@ -9,7 +9,8 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## More hypothesis testing and Extensions of t-tests and permutation tests (ANOVA)  
+## More hypothesis testing and Extensions of t-tests and permutation tests and 
+visualization
 
 Let's start working with a new data set that complements what we've been 
 working with so far. 
