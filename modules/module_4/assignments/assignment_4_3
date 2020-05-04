@@ -1,0 +1,19 @@
+Assignment 4-3
+For this last assignment, we'll do a bit of practice with multiple regression 
+and thinking about the penguin-predicament we've found ourselves in. 
+You'll be working with the second set of data from this module 
+(https://tinyurl.com/yardhofj). Build a script that accomplishes the following 
+tasks: 
+1. Follows best practices for formatting and documentation that we've 
+discussed over the course of the semester. 
+2. Imports the site data from the URL above and does a quick summary on the 
+data that computes the average distance to water for 1971 and 2011 
+(using any means you'd like). 
+3. Performs a multiple regression that examines the relationship between the 
+number of nests as a function of distance to water with year as an interactive 
+effect. 
+4. Plots the equivalent relationship above and provides a succinct description 
+of the relationship. 
+5. We're at a standstill here - what do we do? Is there another approach that 
+you can think of that might work better? How do we make a decision about what 
+nesting sites to build our road through and which to save (4-5 sentences). 

@@ -17,7 +17,7 @@ around for most of this module: **what factors predict penguin nesting, and can
 we build a model that allows to pick out sites that are the least destructive to
 the penguin population if we develop a road there**?  
 
-## Visualizing the problem - Two variables  
+### Visualizing the problem - Two variables  
 Let's begin by reading in our data and building a plot that explores some 
 of the variables of interest.  
 ```{r}
@@ -52,7 +52,7 @@ ggplot(site_data, aes(x = tussocks, y = num_nests)) +
   theme_classic()
 ```
 
-## Individual Exploration - Least Squares?  
+### Individual Exploration - Least Squares?  
 Spend 10 minutes searching the web. Your goal is to be able to explain how 
 linear regression works. How do we figure out what the best line is? What is 
 this process called, and how would you explain it to someone who has never taken 
@@ -60,7 +60,7 @@ a statistics course before?
 
 Be ready to report out!  
 
-## Visualizing the regression line  
+### Visualizing the regression line  
 So now that we have a basic idea of how this works, let's explore how we 
 can visualize a linear regression and also dive into some nitty gritty about 
 building a model and interpreting what R tells us about the model.  
@@ -79,7 +79,7 @@ ggplot(site_data, aes(x = tussocks, y = num_nests)) +
 
 ```
 
-# Building a real model and exploring/interpreting  
+### Building a real model and exploring/interpreting  
 
 So the plot above is great, but... it's all happening within ggplot. We can't
 extract any useful information about the regression there. For that, we have to
@@ -93,7 +93,7 @@ summary(tussock_mod)
 
 ```
 
-## Group discussion and explanation of output  
+### Group discussion and explanation of output  
 Spend 10 minutes in your groups discussing the following questions:  
 1. Can you explain what the following components are and how to interpret them:  
   a. Estimate for Intercept and tussocks  
@@ -107,5 +107,81 @@ that Google is your friend.
 
 As always - be ready to report out!  
 
+## Multiple regression - combining variables into a bigger complex model  
 
-  
+So we've built a simple model that predicts the number of nests as a function 
+of the number of tussocks, but what about all of our other variables? Should we 
+do this stepwise, where we run individual parameters against nests and see what
+is important, or is there a better way?  
+
+```{r}
+lm_dist = lm(num_nests ~ dist_to_water, data = site_data)
+summary(lm_dist)
+ggplot(site_data, aes(x = dist_to_water, y = num_nests)) +
+  geom_point()
+```
+
+We could do this, but it gets complicated - we have multiple years in play, and 
+it doesn't give us the overall picture of how variables interact to affect the 
+thing we're really interested in, the number of nests.  
+
+What we can do instead is develop a model that combines all of variables and 
+interpret the output to figure out what is happening.  
+
+```{r}
+site_data = site_data %>%
+  mutate(year = as.factor(year))
+
+site_data_2011 = site_data %>%
+  filter(year == 2011)
+
+full_mod = lm(num_nests ~ tussocks*dist_to_water*stone_size, 
+              data = site_data_2011)
+# Be sure to explain interaction here (plus verus *)
+# Ok, so this doesn't tell us much
+```
+
+### Practice interpreting regression output
+Spend 5 minutes in your groups interpreting the output of this model. What are 
+your conclusions and how did you draw them? What do you think the next steps 
+would be here?
+
+```{r}
+tussock_mod = lm(num_nests ~ tussocks, 
+                 data = site_data_2011)
+
+# So this is weird right, because we saw a pattern in tussocks before... with 
+# the full dataset. So what's going on?
+
+tussock_time_mod = lm(num_nests ~ tussocks*year, data = site_data)
+
+# This is a bit harder to interpret, lets look at a figure
+ggplot(site_data, aes(x = tussocks, y = num_nests, color = year)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_classic()
+```
+
+### Problem  
+So, we've kind of run into a problem - the thing we thought was a good 
+predictor really isn't. Back to the drawing board. Let's try out some of the 
+other variables.
+
+```{r}
+ggplot(site_data, aes(x = stone_size, y = num_nests, color = year)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+stone_size_mod = lm(num_nests ~ stone_size*year, data = site_data)
+
+ggplot(site_data, aes(x = dist_to_water, y = num_nests, color = year)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+```
+
+So... this is not the best situation to be in. We have variables we thought 
+were important, and could be informative in our decision making about where to
+build our road, but really aren't. A few options remain, but we'll save that 
+for the very last assignment. 
+
