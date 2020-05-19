@@ -2,7 +2,9 @@
 title: "Final Exam (Modules 1-4)"
 author: "Keaton Wilson"
 date: "5/6/2020"
-output: pdf_document
+output:
+  word_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -91,7 +93,7 @@ ggplot(plant_heights, aes(x = temp, y = loght, color = as.factor(hemisphere),
 
 ### Question 4  
 True or false: the data structure we worked mostly frequently with this semester 
-was a list.  
+was a data frame.  
 
 
 
@@ -129,8 +131,8 @@ penguins %>%
 
 ggplot(penguins_summary, aes(x = site, y = mean_lifespan, color = sex)) +
   geom_point() +
-  geom_errorbar(aes(ymin = mean_lifespan*-2*sd_life_span, 
-                    ymax = mean_lifespan*2*sd_life_span)) +
+  geom_errorbar(aes(ymin = mean_lifespan - (2*sd_life_span), 
+                    ymax = mean_lifespan + (2*sd_life_span))) +
   theme_classic()
 ```
 
